@@ -63,7 +63,7 @@ npm run dev
       <a href="https://github.com/doeun0509"><strong>김도은</strong></a>
     </td>
     <td align="center" width="150px">
-      <a href="https://github.com/HwanheeMoon"><strong>김지훈</strong></a>
+      <a href="https://github.com/HwanheeMoon"><strong>문환희</strong></a>
     </td>
     <td align="center" width="150px">
       <a href="https://github.com/realcold0"><strong>이승환</strong></a>
