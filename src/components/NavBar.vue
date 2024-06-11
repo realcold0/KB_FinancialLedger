@@ -28,7 +28,7 @@
   
 <script>
 import { RouterLink } from 'vue-router';
-import { useDateStore } from '@/stores/counter'
+import { useDateStore } from '@/stores/date'
 export default {
     setup() { 
         const date = useDateStore()
