@@ -9,8 +9,8 @@
       <div class="date-section">
         <img loading="lazy" src="@/assets/img/leftArrow.png" class="nav-icon" @click="decreaseMonth" />
         <div class="date-text">
-          <div class="month">6월</div>
-          <div class="year"><span style="font-size: 25px">2024</span></div>
+          <div class="month" >{{ date.month }}</div>
+          <div class="year"><span style="font-size: 25px">{{ date.year }}</span></div>
         </div>
         <img loading="lazy" src="@/assets/img/rightArrow.png" class="nav-icon" @click="increaseMonth"/>
       </div>
@@ -29,13 +29,11 @@
 <script>
 import { RouterLink } from 'vue-router';
 import { useDateStore } from '@/stores/counter'
-
-
-
 export default {
-    
     setup() { 
         const date = useDateStore()
+        
+
         const decreaseMonth = function(){
             console.log(date.decreaseMonth());
         }
@@ -43,7 +41,7 @@ export default {
         const increaseMonth = function(){
             console.log(date.increaseMonth());
         }
-        return {decreaseMonth, increaseMonth}
+        return {decreaseMonth, increaseMonth, date}
     },
 }
 </script>

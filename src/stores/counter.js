@@ -5,7 +5,7 @@ export const useDateStore = defineStore('date', () => {
   let today = new Date();
   console.log(today)
   const month = ref(today.getMonth() + 1) ;
-  const year = ref(today.getFullYear)
+  const year = ref(today.getFullYear())
 
   function increaseMonth(){
     today.setMonth(month.value)
@@ -27,5 +27,5 @@ export const useDateStore = defineStore('date', () => {
     return {year : year.value, month: month.value};
   }
 
-  return { month, year, increaseMonth, decreaseMonth }
+  return { month, year, increaseMonth, decreaseMonth , getYearMonth}
 })
