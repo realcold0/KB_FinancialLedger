@@ -1,0 +1,59 @@
+{
+    "user" : 
+        [
+            {"id":1,"name":"Joleen Berzins","email":"jberzins0@exblog.jp","userId":"jberzins0","userPw":"gZ2\"i`<hM_"},
+            {"id":2,"name":"Chuck Silverman","email":"csilverman1@hud.gov","userId":"csilverman1","userPw":"rJ4`2rwQ3*Cwn_S,"},
+            {"id":3,"name":"Viva Livick","email":"vlivick2@altervista.org","userId":"vlivick2","userPw":"gH8_YgbUE"}
+        ],
+    "account" :
+        [
+            {"id":1,"total_income":11930,"total_expand":6510,"profit":5420,"user_id":3},
+            {"id":2,"total_income":49327,"total_expand":7784,"profit":41543,"user_id":2},
+            {"id":3,"total_income":23570,"total_expand":24480,"profit":-910,"user_id":1}
+        ],
+    "transactionDetail" :
+        [
+            {"id":"2023-06-18","category":"교통","user_id":3,"amount":24536,"memo":"Halibut - Fletches","class":"수입","payment":"카드"},
+            {"id":"2023-07-04","category":"생활","user_id":1,"amount":20509,"memo":"Grapes - Red","class":"지출","payment":"현금"},
+            {"id":"2023-12-31","category":"생활","user_id":3,"amount":41421,"memo":"Hand Towel","class":"수입","payment":"현금"},
+            {"id":"2024-04-26","category":"생활","user_id":2,"amount":28400,"memo":"Eggplant Oriental","class":"지출","payment":"현금"},
+            {"id":"2023-11-18","category":"생활","user_id":1,"amount":38035,"memo":"Salami - Genova","class":"수입","payment":"현금"},
+            {"id":"2023-08-01","category":"식비","user_id":3,"amount":7965,"memo":"Cheese - Stilton","class":"수입","payment":"현금"},
+            {"id":"2024-01-16","category":"교통","user_id":1,"amount":36813,"memo":"Stock - Veal, White","class":"수입","payment":"카드"},
+            {"id":"2023-06-22","category":"식비","user_id":1,"amount":59235,"memo":"Mince Meat - Filling","class":"수입","payment":"카드"},
+            {"id":"2023-09-04","category":"생활","user_id":3,"amount":15484,"memo":"Tea - Herbal I Love Lemon","class":"지출","payment":"현금"},
+            {"id":"2023-10-28","category":"식비","user_id":1,"amount":26287,"memo":"Quail Eggs - Canned","class":"지출","payment":"카드"},
+            {"id":"2023-07-05","category":"생활","user_id":1,"amount":4373,"memo":"Tomato Puree","class":"수입","payment":"카드"},
+            {"id":"2024-02-17","category":"생활","user_id":3,"amount":13475,"memo":"Pork - Side Ribs","class":"지출","payment":"카드"},
+            {"id":"2023-06-11","category":"생활","user_id":2,"amount":44219,"memo":"Coffee - Dark Roast","class":"지출","payment":"카드"},
+            {"id":"2023-12-05","category":"생활","user_id":3,"amount":12068,"memo":"Cloves - Whole","class":"수입","payment":"현금"},
+            {"id":"2024-03-17","category":"쇼핑/뷰티","user_id":3,"amount":36277,"memo":"Veal - Nuckle","class":"지출","payment":"카드"},
+            {"id":"2024-04-26","category":"생활","user_id":2,"amount":22232,"memo":"Pork - Bacon, Sliced","class":"수입","payment":"카드"},
+            {"id":"2024-01-24","category":"생활","user_id":1,"amount":2425,"memo":"V8 Pet","class":"지출","payment":"현금"},
+            {"id":"2023-06-16","category":"식비","user_id":3,"amount":57210,"memo":"Chicken Breast Wing On","class":"지출","payment":"현금"},
+            {"id":"2024-05-12","category":"생활","user_id":1,"amount":53553,"memo":"Soup - Campbells Broccoli","class":"수입","payment":"현금"},
+            {"id":"2024-05-24","category":"교통","user_id":2,"amount":8356,"memo":"Apple - Fuji","class":"수입","payment":"현금"},
+            {"id":"2023-09-06","category":"쇼핑/뷰티","user_id":1,"amount":58434,"memo":"Lettuce - Mini Greens, Whole","class":"지출","payment":"카드"},
+            {"id":"2023-09-13","category":"생활","user_id":1,"amount":41009,"memo":"Calypso - Pineapple Passion","class":"지출","payment":"카드"},
+            {"id":"2024-04-20","category":"식비","user_id":3,"amount":55184,"memo":"Beef - Chuck, Boneless","class":"수입","payment":"카드"},
+            {"id":"2023-11-26","category":"생활","user_id":1,"amount":7437,"memo":"Lamb - Loin Chops","class":"수입","payment":"카드"},
+            {"id":"2023-12-31","category":"식비","user_id":1,"amount":34267,"memo":"Pepper - Green","class":"수입","payment":"카드"},
+            {"id":"2024-03-13","category":"생활","user_id":3,"amount":9890,"memo":"Milk - Buttermilk","class":"수입","payment":"카드"},
+            {"id":"2024-05-25","category":"교통","user_id":2,"amount":15736,"memo":"Ice Cream - Life Savers","class":"수입","payment":"현금"},
+            {"id":"2023-08-17","category":"쇼핑/뷰티","user_id":1,"amount":2321,"memo":"Nut - Almond, Blanched, Whole","class":"수입","payment":"카드"},
+            {"id":"2024-03-11","category":"교통","user_id":2,"amount":31442,"memo":"Pork - Belly Fresh","class":"수입","payment":"카드"},
+            {"id":"2024-03-05","category":"교통","user_id":3,"amount":22111,"memo":"Pail With Metal Handle 16l White","class":"지출","payment":"현금"},
+            {"id":"2024-05-05","category":"쇼핑/뷰티","user_id":1,"amount":1858,"memo":"Cumin - Ground","class":"지출","payment":"카드"},
+            {"id":"2023-07-20","category":"교통","user_id":3,"amount":33225,"memo":"Tuna - Salad Premix","class":"지출","payment":"현금"},
+            {"id":"2023-11-21","category":"교통","user_id":3,"amount":11597,"memo":"Pepper - Green","class":"수입","payment":"카드"},
+            {"id":"2024-01-09","category":"생활","user_id":3,"amount":27716,"memo":"Clams - Canned","class":"지출","payment":"카드"},
+            {"id":"2023-10-22","category":"쇼핑/뷰티","user_id":3,"amount":24360,"memo":"Soupfoamcont12oz 112con","class":"수입","payment":"카드"},
+            {"id":"2023-08-14","category":"쇼핑/뷰티","user_id":1,"amount":23191,"memo":"Mahi Mahi","class":"수입","payment":"현금"},
+            {"id":"2024-04-08","category":"생활","user_id":2,"amount":21811,"memo":"Bread - Mini Hamburger Bun","class":"지출","payment":"카드"},
+            {"id":"2024-04-19","category":"교통","user_id":2,"amount":1511,"memo":"Scallops - 10/20","class":"지출","payment":"현금"},
+            {"id":"2024-02-01","category":"식비","user_id":1,"amount":34494,"memo":"Cocoa Powder - Natural","class":"지출","payment":"카드"},
+            {"id":"2024-03-07","category":"교통","user_id":1,"amount":25082,"memo":"Oil - Shortening,liqud, Fry","class":"수입","payment":"카드"}
+        ]
+
+    
+}
