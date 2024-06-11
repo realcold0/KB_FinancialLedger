@@ -7,8 +7,7 @@
 ## 실행 방법
 
 ```
-git clone https://github.com/lee-JunR/KB_FinancialLedger
-cd gitTeamToyProject_Wadada
+git clone https://github.com/lee-JunR/KB_FinancialLedger.git
 npm install
 npm run dev
 ```
