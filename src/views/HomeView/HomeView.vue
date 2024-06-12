@@ -6,11 +6,6 @@ import Calendar from "./components/Calendar.vue"
   <div class="financial-summary">
     <section class="summary-content">
       <article class="summary-box">
-        <div class="income-expense">
-          <p class="income">총수입: 3,231,300원</p>
-          <p class="expense">총지출: 1,231,300원</p>
-          <p class="total">총계: 4,562,600원</p>
-        </div>
         <div class="chart-image-secondary">
           <Calendar></Calendar>
         </div>
@@ -21,20 +16,15 @@ import Calendar from "./components/Calendar.vue"
     </aside>
   </div>
 </template>
-
 <style scoped>
 .financial-summary {
   background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-bottom: 37px;
 }
 
-@media (max-width: 991px) {
-  .banner {
-    max-width: 100%;
-  }
-}
 
 .summary-content {
   align-self: center;
@@ -43,14 +33,16 @@ import Calendar from "./components/Calendar.vue"
   margin-top: -19px;
   width: 100%;
   max-width: 1022px;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
 }
 
 @media (max-width: 991px) {
   .summary-content {
     max-width: 100%;
+    max-height: 100%;
     flex-wrap: wrap;
+    padding : 0;
   }
 }
 
@@ -65,13 +57,13 @@ import Calendar from "./components/Calendar.vue"
   flex-grow: 1;
   flex-basis: 0;
   width: fit-content;
-  padding: 27px 80px 43px;
+  padding: 27px 80px 80px;
 }
 
 @media (max-width: 991px) {
   .summary-box {
     max-width: 100%;
-    padding: 0 20px;
+    padding: 30px 20px;
   }
 }
 
@@ -81,41 +73,30 @@ import Calendar from "./components/Calendar.vue"
   margin: 0 17px;
 }
 
+
+
+.income,
+.expense {
+  align-self: start;
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
 @media (max-width: 991px) {
-  .income-expense {
-    max-width: 100%;
-    margin-right: 10px;
-    flex-wrap: wrap;
+
+  .income,
+  .expense {
+    white-space: initial;
   }
 }
 
 .income {
-  align-self: start;
   color: #6293ce;
-  font-family: Inter, sans-serif;
-  flex-grow: 1;
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-@media (max-width: 991px) {
-  .income {
-    white-space: initial;
-  }
 }
 
 .expense {
-  align-self: start;
   color: #f66464;
-  font-family: Inter, sans-serif;
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-@media (max-width: 991px) {
-  .expense {
-    white-space: initial;
-  }
 }
 
 .total {
@@ -126,37 +107,26 @@ import Calendar from "./components/Calendar.vue"
   flex-basis: auto;
 }
 
-.chart-image {
-  aspect-ratio: 20;
-  object-fit: auto;
-  object-position: center;
-  width: 681px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.83);
-  align-self: center;
-  margin: 6px 17px 0;
-}
-
-@media (max-width: 991px) {
-  .chart-image {
-    max-width: 100%;
-  }
-}
-
+.chart-image,
 .chart-image-secondary {
   aspect-ratio: 1.47;
   object-fit: auto;
   object-position: center;
   width: 100%;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.59);
-  border: 1px solid rgba(255, 255, 255, 1);
-  margin: 11px 17px 0;
+  align-self: center;
+  margin: 6px 17px 0;
+
 }
 
-@media (max-width: 991px) {
-  .chart-image-secondary {
-    max-width: 100%;
-    margin-right: 10px;
-  }
+
+.chart-image {
+  aspect-ratio: 20;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.83);
+}
+
+.chart-image-secondary {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.59);
+  border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .add-button {

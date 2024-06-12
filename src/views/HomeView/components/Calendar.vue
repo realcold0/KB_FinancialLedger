@@ -1,5 +1,12 @@
 <template>
 	<div>
+		<div class="summary-records">
+			<div class="summary-item">
+				<p class="summary-income">총수입 {{ dashboard.total_income.toLocaleString() }} 원</p>
+				<p class="summary-expense">총지출 {{ dashboard.total_expand.toLocaleString() }} 원</p>
+			</div>
+			<div class="summary-total">총계 {{ dashboard.profit.toLocaleString() }} 원</div>
+		</div>
 		<FullCalendar :options="calendarOptions" ref="calendar" />
 		<div v-if="loading">Loading...</div>
 		<div v-else-if="error">{{ error }}</div>
@@ -15,10 +22,37 @@ import koLocale from '@fullcalendar/core/locales/ko';
 import { useDateStore } from '@/stores/date';
 import axios from 'axios';
 
+const dashboard = ref({
+	total_income: 0,
+	total_expand: 0,
+	profit: 0,
+});
+
 const calendar = ref(null);
 const dateStore = useDateStore();
 const loading = ref(true);
 const error = ref(null);
+
+const fetchDashboardData = async () => {
+	try {
+		const id = sessionStorage.getItem('id');
+		const response = await axios.get(`http://localhost:3001/account?user_id=${id}`);
+		const data = response.data;
+
+		const userDashboard = data.find(user => user.user_id == id);
+
+		if (userDashboard) {
+			dashboard.value = userDashboard;
+		} else {
+			error.value = 'User data not found';
+		}
+	} catch (err) {
+		error.value = err.message;
+	} finally {
+		loading.value = false;
+	}
+};
+
 const calendarOptions = ref({
 	plugins: [dayGridPlugin, interactionPlugin],
 	locale: koLocale,
@@ -31,7 +65,6 @@ const calendarOptions = ref({
 	dateClick: handleDateClick,
 	events: []
 });
-
 
 const fetchTransactionHistory = async () => {
 	try {
@@ -95,6 +128,7 @@ const groupTransactionsByDay = (transactions) => {
 
 onMounted(async () => {
 	await fetchTransactionHistory();
+	await fetchDashboardData();
 });
 
 function handleDateClick(arg) {
@@ -110,4 +144,34 @@ watch(
 );
 </script>
 
-<style scoped></style>
+<style scoped>
+.summary-records {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: 700;
+	margin: 0 auto;
+}
+
+.summary-item {
+	display: flex;
+	gap: 9px;
+	white-space: nowrap;
+}
+
+.summary-income {
+	color: #6293ce;
+	font-family: 'Inter', sans-serif;
+}
+
+.summary-expense {
+	color: #f66464;
+	font-family: 'Inter', sans-serif;
+}
+
+.summary-total {
+	color: #434343;
+	font-family: 'Inter', sans-serif;
+}
+</style>
