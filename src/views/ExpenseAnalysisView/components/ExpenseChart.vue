@@ -12,37 +12,39 @@
         </div>
         <div class="column-2">
           <div class="div-5">
-            <div class="div-6">
+            <div class="total">
               이번달 지출 : <br />
-              {{ totalExpense }} 원
+            </div>
+            <div class="totalValue">
+              {{ totalExpense.toLocaleString() }} 원
             </div>
             <div class="div-7">
               <div class="div-8">
                 <div class="div-9"><div class="div-10">생활</div></div>
                 <div class="div-11">{{ categoryPercentages["생활"] }}%</div>
               </div>
-              <div class="div-12">{{ totals["생활"] }} 원</div>
+              <div class="div-12">{{ totals["생활"].toLocaleString() }} 원</div>
             </div>
             <div class="div-13">
               <div class="div-14">
                 <div class="div-15"><div class="div-16">쇼핑/뷰티</div></div>
                 <div class="div-17">{{ categoryPercentages["쇼핑/뷰티"] }}%</div>
               </div>
-              <div class="div-18">{{ totals["쇼핑/뷰티"] }} 원</div>
+              <div class="div-18">{{ totals["쇼핑/뷰티"].toLocaleString() }} 원</div>
             </div>
             <div class="div-19">
               <div class="div-20">
                 <div class="div-21"><div class="div-22">교통</div></div>
                 <div class="div-23">{{ categoryPercentages["교통"] }}%</div>
               </div>
-              <div class="div-24">{{ totals["교통"] }} 원</div>
+              <div class="div-24">{{ totals["교통"].toLocaleString() }} 원</div>
             </div>
             <div class="div-25">
               <div class="div-26">
                 <div class="div-27"><div class="div-28">식비</div></div>
                 <div class="div-29">{{ categoryPercentages["식비"] }}%</div>
               </div>
-              <div class="div-30">{{ totals["식비"] }} 원</div>
+              <div class="div-30">{{ totals["식비"].toLocaleString() }} 원</div>
             </div>
           </div>
         </div>
@@ -79,6 +81,13 @@ export default defineComponent({
        backgroundColor: 'transparent',
        width:550,
        height:550,
+       fontSize:17,
+       pieSliceBorderColor:'white',
+       pieSliceTextStyle: {
+        color: 'black', // 텍스트 색상 설정
+        fontSize: 17, // 텍스트 크기 설정
+         // 텍스트 굵게 설정
+      },
        
     });
 
@@ -98,11 +107,18 @@ export default defineComponent({
 
     const fetchData = async () => {
       try {
+
         const response = await axios.get(
           "http://localhost:3001/transactionDetail"
         );
-        const data = response.data.filter((item: any) => item.user_id === 1);
 
+
+        const user_id = sessionStorage.getItem("id");
+        console.log(user_id)
+
+        const data = response.data.filter((item: any) => item.user_id === parseInt(user_id));
+        
+        console.log(data)
         let overallTotal = 0;
 
         data.forEach((item: any) => {
@@ -245,8 +261,13 @@ export default defineComponent({
     margin-top: 40px;
   }
 }
-.div-6 {
+.total{
+  font: 400 20px Inter, sans-serif;
+}
+.totalValue {
   font: 400 32px Inter, sans-serif;
+  margin-top: 10px;
+  margin-bottom: -5px;
 }
 .div-7 {
   border-radius: 21px;
@@ -258,6 +279,7 @@ export default defineComponent({
   white-space: nowrap;
   text-align: center;
   padding: 18px 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 991px) {
   .div-7 {
@@ -291,6 +313,7 @@ export default defineComponent({
   background-color: #9fd7ff;
   justify-content: center;
   padding: 9px 31px;
+  font-weight: 500;
 }
 @media (max-width: 991px) {
   .div-10 {
@@ -318,6 +341,7 @@ export default defineComponent({
   white-space: nowrap;
   text-align: center;
   padding: 18px 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 991px) {
   .div-13 {
@@ -352,6 +376,8 @@ export default defineComponent({
   background-color: #f9f59e;
   justify-content: center;
   padding: 9px 31px;
+  font-weight: 500;
+  
 }
 @media (max-width: 991px) {
   .div-16 {
@@ -379,6 +405,7 @@ export default defineComponent({
   white-space: nowrap;
   text-align: center;
   padding: 18px 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 991px) {
   .div-19 {
@@ -412,6 +439,7 @@ export default defineComponent({
   background-color: #99ff89;
   justify-content: center;
   padding: 9px 31px;
+  font-weight: 500;
 }
 @media (max-width: 991px) {
   .div-22 {
@@ -439,6 +467,7 @@ export default defineComponent({
   white-space: nowrap;
   text-align: center;
   padding: 18px 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 991px) {
   .div-25 {
@@ -472,6 +501,7 @@ export default defineComponent({
   background-color: #ffade3;
   justify-content: center;
   padding: 9px 31px;
+  font-weight: 500;
 }
 @media (max-width: 991px) {
   .div-28 {
