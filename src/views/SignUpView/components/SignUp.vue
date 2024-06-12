@@ -69,6 +69,24 @@ const idCheck = () => {
     })
 }
 
+const createAccount = () => {
+  const sendData = {
+        "total_income" : 0,
+        "total_expand" : 0,
+        "profit" : 0,
+        "user_id" : data.userId
+    };
+
+    axios.post(`http://localhost:3001/account`, sendData)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+
+}
+
 const signUp = () => {
     
     if(!isIdChecked.value || !isPwChecked.value) {
