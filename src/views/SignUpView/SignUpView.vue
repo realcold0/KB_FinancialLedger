@@ -11,7 +11,7 @@ import SignUp from './components/SignUp.vue';
 
   <style scoped>
   .dive {
-    margin-top: 10%;
+    margin-top: 0%;
     display: flex;
     padding-bottom: 80px;
     flex-direction: column;

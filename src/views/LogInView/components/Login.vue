@@ -21,6 +21,7 @@
 <script setup>
 import { reactive } from 'vue';
 import axios from 'axios';
+import router from '@/router';
 
 const data = reactive({"id" : "", "pw" : ""});
 
@@ -38,8 +39,9 @@ const checkId = () => {
             return;
         }
         alert("로그인 성공");
-        sessionStorage.setItem("id", data.id);
+        sessionStorage.setItem("id", res.data[0].id);
         //console.log(res.data);
+        router.push("/");
     })
     .catch(e => {
         console.log(e);

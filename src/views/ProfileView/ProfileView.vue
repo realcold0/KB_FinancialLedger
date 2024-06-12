@@ -55,7 +55,7 @@ onMounted(() => {
         alert("적합하지 않은경로");
         router.push("/login");
     }
-    axios.get(`http://localhost:3001/user?userId=${userId}`)
+    axios.get(`http://localhost:3001/user?id=${userId}`)
     .then(res => {
         const userData = res.data[0];
         console.log(userData);
@@ -77,7 +77,7 @@ onMounted(() => {
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Myeongjo&display=swap');
   .div {
-    margin-top: 10%;
+    margin-top: -1%;
     display: flex;
     padding-bottom: 73px;
     flex-direction: column;
