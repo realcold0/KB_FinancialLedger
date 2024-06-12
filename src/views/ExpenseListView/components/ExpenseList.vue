@@ -1,4 +1,4 @@
-<template>
+<template >
     <div class="div">
       <div class="div-2">
         <div class="div-3">
@@ -172,10 +172,10 @@
     padding-bottom: 31px;
     flex-direction: column;
     z-index: auto;
+    position: relative;
   }
   .div-2 {
     align-self: center;
-    z-index: 10;
     display: flex;
     margin-top: -19px;
     width: 100%;
