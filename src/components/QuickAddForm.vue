@@ -62,7 +62,7 @@ export default {
       data:  {
         id: '',
         category: '생활',
-        /*user_id: */
+        user_id: '',
         amount: null,
         memo: '',
         class: '지출',
@@ -86,6 +86,7 @@ export default {
     confirm() {
       // 데이터 준비
       this.data.id = this.nextId;
+      this.data.user_id = sessionStorage.getItem("id");
       // Axios를 사용하여 데이터를 POST
       axios.post('http://localhost:3001/transactionDetail', this.data)
         .then(response => {
