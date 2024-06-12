@@ -1,19 +1,19 @@
 <template>
 	<div>
-		<button type="button" @click="prev">이전</button>
-		<button type="button" @click="next">다음</button>
 		<FullCalendar :options="calendarOptions" ref="calendar" />
 	</div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import koLocale from '@fullcalendar/core/locales/ko';
+import { useDateStore } from '@/stores/date'
 
 const calendar = ref(null);
+const dateStore = useDateStore();
 
 const calendarOptions = ref({
 	plugins: [dayGridPlugin, interactionPlugin],
@@ -35,11 +35,12 @@ function handleDateClick(arg) {
 	alert('date click! ' + arg.dateStr);
 }
 
-function prev() {
-	calendar.value.getApi().prev();
-}
+watch(
+	() => ({ year: dateStore.year, month: dateStore.month }),
+	(newDate) => {
+		const { year, month } = newDate;
+		calendar.value.getApi().gotoDate(`${year}-${month.toString().padStart(2, '0')}-01`);
+	}
+);
 
-function next() {
-	calendar.value.getApi().next();
-}
 </script>
