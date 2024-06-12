@@ -16,7 +16,7 @@ import Login from './components/Login.vue';
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10%;
+    padding-top: 0%;
   }
   .div-9 {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
