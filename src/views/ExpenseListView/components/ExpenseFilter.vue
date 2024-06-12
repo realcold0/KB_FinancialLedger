@@ -1,14 +1,13 @@
 
 <template>
-    <div style="z-index: 1000;">
+    <div>
         <div class="filterWrapper">
             <div class="filter">
                 <div class="date">
                     <label for="date">일자</label> <br>
                     <!-- <button @click="test" id="date">{{ search.date.year }}-{{ search.date.month }}-{{ search.date.date }}</button> -->
                     <!-- <input type="date" name="" id=""> -->
-
-                    <VDatePicker id="date" v-model="current" style="z-index: 1000;">
+                    <VDatePicker id="date" v-model="current" >
                         <template #default="{ inputValue, inputEvents }">
                             <input :value="inputValue" v-on="inputEvents" class="searchInput"/>
                         </template>
@@ -102,6 +101,7 @@ import ExpenseList from "./ExpenseList.vue";
         width: 876px;
         border-radius: 14px;
         background-color: #FAEBCD;
+        position: relative;
         z-index: 10;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
