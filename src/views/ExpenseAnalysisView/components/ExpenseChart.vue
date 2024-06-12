@@ -116,8 +116,9 @@ export default defineComponent({
         const user_id = sessionStorage.getItem("id");
         console.log(user_id)
 
-        const data = response.data.filter((item: any) => item.user_id === user_id);
-
+        const data = response.data.filter((item: any) => item.user_id === parseInt(user_id));
+        
+        console.log(data)
         let overallTotal = 0;
 
         data.forEach((item: any) => {
