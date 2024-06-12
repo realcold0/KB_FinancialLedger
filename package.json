@@ -13,6 +13,7 @@
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-google-charts": "^1.1.0",
+    "vue-navigation-bar": "^6.1.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
