@@ -4,7 +4,6 @@ import Calendar from "./components/Calendar.vue"
 
 <template>
   <div class="financial-summary">
-    <section class="banner"></section>
     <section class="summary-content">
       <article class="summary-box">
         <div class="income-expense">
@@ -29,12 +28,6 @@ import Calendar from "./components/Calendar.vue"
   display: flex;
   flex-direction: column;
   padding-bottom: 37px;
-}
-
-.banner {
-  background-color: #f7c873;
-  min-height: 172px;
-  width: 100%;
 }
 
 @media (max-width: 991px) {
