@@ -1,65 +1,50 @@
 <template>
-  <div :class="$style.div">
-    <div :class="$style.div1">
-      <div :class="$style.div2" />
-    </div>
-    <div :class="$style.parent">
-      <div :class="$style.div3" />
-      <div :class="$style.image17Parent">
-        <div :class="$style.googleChartContainer">
+  <div class="div">
+    <div class="div-3">
+      <div class="div-4">
+        <div class="column">
           <google-chart
-            type="PieChart"
-            :data="chartData"
-            :options="chartOptions"
-            style="width: 100%; height: 300px"
-          ></google-chart>
+          type="PieChart"
+          :data="chartData"
+          :options="chartOptions"
+          style="width: 100%; height: 300px"
+        ></google-chart>
         </div>
-
-        <div :class="$style.div4">
-          <p :class="$style.p">이번달 지출 :</p>
-          <p :class="$style.p1">{{ totalExpense }} 원</p>
-        </div>
-
-        <div :class="$style.div5">
-          <div :class="$style.div6" />
-          <div :class="$style.div7">
-            <div :class="$style.child" />
-            <div :class="$style.div8">생활</div>
+        <div class="column-2">
+          <div class="div-5">
+            <div class="div-6">
+              이번달 지출 : <br />
+              {{ totalExpense }} 원
+            </div>
+            <div class="div-7">
+              <div class="div-8">
+                <div class="div-9"><div class="div-10">생활</div></div>
+                <div class="div-11">{{ categoryPercentages["생활"] }}%</div>
+              </div>
+              <div class="div-12">{{ totals["생활"] }} 원</div>
+            </div>
+            <div class="div-13">
+              <div class="div-14">
+                <div class="div-15"><div class="div-16">쇼핑/뷰티</div></div>
+                <div class="div-17">{{ categoryPercentages["쇼핑/뷰티"] }}%</div>
+              </div>
+              <div class="div-18">{{ totals["쇼핑/뷰티"] }} 원</div>
+            </div>
+            <div class="div-19">
+              <div class="div-20">
+                <div class="div-21"><div class="div-22">교통</div></div>
+                <div class="div-23">{{ categoryPercentages["교통"] }}%</div>
+              </div>
+              <div class="div-24">{{ totals["교통"] }} 원</div>
+            </div>
+            <div class="div-25">
+              <div class="div-26">
+                <div class="div-27"><div class="div-28">식비</div></div>
+                <div class="div-29">{{ categoryPercentages["식비"] }}%</div>
+              </div>
+              <div class="div-30">{{ totals["식비"] }} 원</div>
+            </div>
           </div>
-          <div :class="$style.div9">{{ categoryPercentages["생활"] }}%</div>
-          <div :class="$style.div10">{{ totals["생활"] }} 원</div>
-        </div>
-
-        <div :class="$style.div11">
-          <div :class="$style.div6" />
-          <div :class="$style.div7">
-            <div :class="$style.item" />
-            <div :class="$style.div8">쇼핑/뷰티</div>
-          </div>
-          <div :class="$style.div9">
-            {{ categoryPercentages["쇼핑/뷰티"] }}%
-          </div>
-          <div :class="$style.div10">{{ totals["쇼핑/뷰티"] }} 원</div>
-        </div>
-
-        <div :class="$style.div17">
-          <div :class="$style.div6" />
-          <div :class="$style.div7">
-            <div :class="$style.inner" />
-            <div :class="$style.div8">교통</div>
-          </div>
-          <div :class="$style.div9">{{ categoryPercentages["교통"] }}%</div>
-          <div :class="$style.div10">{{ totals["교통"] }} 원</div>
-        </div>
-
-        <div :class="$style.div23">
-          <div :class="$style.div6" />
-          <div :class="$style.div7">
-            <div :class="$style.rectangleDiv" />
-            <div :class="$style.div8">식비</div>
-          </div>
-          <div :class="$style.div9">{{ categoryPercentages["식비"] }}%</div>
-          <div :class="$style.div10">{{ totals["식비"] }} 원</div>
         </div>
       </div>
     </div>
@@ -91,9 +76,10 @@ export default defineComponent({
             1: { color: 'F9F59E' },
             2: { color: '99FF89' },
             3: { color: 'FFADE3' },},
-       backgroundColor: 'FAEBCD',
-       width:500,
-       height:500
+       backgroundColor: 'transparent',
+       width:550,
+       height:550,
+       
     });
 
     const totals = ref<{ [key: string]: number }>({
@@ -167,220 +153,340 @@ export default defineComponent({
 });
 </script>
 
-<style module>
-.div2 {
-  /* 상단바 */
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
+<style scoped>
+.div {
+  background-color: #fff;
+  display: flex;
+  padding-bottom: 80px;
+  flex-direction: column;
+}
+.div-2 {
   background-color: #f7c873;
+  min-height: 172px;
+  width: 100%;
 }
-
-.div1 {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 1280px;
-  height: 172px;
+@media (max-width: 991px) {
+  .div-2 {
+    max-width: 100%;
+  }
 }
-
-.div3 {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.div-3 {
   border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: #faebcd;
+  align-self: center;
+  z-index: 10;
+  margin-top: -19px;
   width: 862px;
-  height: 523px;
+  max-width: 100%;
+  padding: 37px 59px 79px;
 }
-
-.googleChartContainer {
-  position: absolute;
-  top: -20px;
-  margin-left: 40px;
-  right: 40px;
-  left: -100px;
-  
+@media (max-width: 991px) {
+  .div-3 {
+    padding: 0 20px;
+  }
 }
-
-.p {
-  margin: 0;
+.div-4 {
+  gap: 20px;
+  display: flex;
 }
-
-.p1 {
-  margin: 0;
-  white-space: pre-wrap;
+@media (max-width: 991px) {
+  .div-4 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+  }
 }
-
-.div4 {
-  position: absolute;
-  top: 0px;
-  left: 365px;
-  font-size: 32px;
-  text-align: left;
-  display: inline-block;
-  width: 446px;
-  height: 102px;
+.column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 45%;
+  margin-right: 70px;
+  margin-left: -80px;
+  margin-top: -30px;
 }
-
-.div6 {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+@media (max-width: 991px) {
+  .column {
+    width: 100%;
+  }
+}
+.img {
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 100%;
+  margin-top: 94px;
+}
+@media (max-width: 991px) {
+  .img {
+    margin-top: 40px;
+  }
+}
+.column-2 {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 55%;
+  margin-left: 20px;
+}
+@media (max-width: 991px) {
+  .column-2 {
+    width: 100%;
+  }
+}
+.div-5 {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+}
+@media (max-width: 991px) {
+  .div-5 {
+    margin-top: 40px;
+  }
+}
+.div-6 {
+  font: 400 32px Inter, sans-serif;
+}
+.div-7 {
   border-radius: 21px;
   background-color: #f8f8f8;
-  width: 379px;
-  height: 69px;
-}
-
-.child {
-  position: absolute;
-  height: 100%;
+  display: flex;
+  margin-top: 22px;
   width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
+  gap: 20px;
+  white-space: nowrap;
+  text-align: center;
+  padding: 18px 15px;
+}
+@media (max-width: 991px) {
+  .div-7 {
+    white-space: initial;
+  }
+}
+.div-8 {
+  display: flex;
+  gap: 19px;
+}
+@media (max-width: 991px) {
+  .div-8 {
+    white-space: initial;
+  }
+}
+.div-9 {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+}
+@media (max-width: 991px) {
+  .div-9 {
+    white-space: initial;
+  }
+}
+.div-10 {
+  font-family: Inter, sans-serif;
   border-radius: 17px;
   background-color: #9fd7ff;
+  justify-content: center;
+  padding: 9px 31px;
 }
-
-.div8 {
-  position: absolute;
-  height: 58.82%;
-  width: 77.78%;
-  top: 20.59%;
-  left: 13.33%;
-  display: inline-block;
+@media (max-width: 991px) {
+  .div-10 {
+    white-space: initial;
+    padding: 0 20px;
+  }
 }
-
-.div7 {
-  position: absolute;
-  top: 18px;
-  left: 15px;
-  width: 90px;
-  height: 34px;
-  font-size: 18px;
+.div-11 {
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
 }
-
-.div9 {
-  position: absolute;
-  top: 24px;
-  left: 108px;
-  font-weight: 300;
-  display: inline-block;
-  width: 86px;
-  height: 30px;
+.div-12 {
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
 }
-
-.div10 {
-  position: absolute;
-  top: 24px;
-  left: 237px;
-  font-weight: 300;
-  display: inline-block;
-  width: 130px;
-  height: 30px;
-}
-
-.div5 {
-  position: absolute;
-  top: 98px;
-  left: 365px;
-  width: 379px;
-  height: 69px;
-}
-
-.item {
-  position: absolute;
-  height: 100%;
+.div-13 {
+  border-radius: 21px;
+  background-color: #f8f8f8;
+  display: flex;
+  margin-top: 10px;
   width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
+  gap: 20px;
+  white-space: nowrap;
+  text-align: center;
+  padding: 18px 15px;
+}
+@media (max-width: 991px) {
+  .div-13 {
+    white-space: initial;
+  }
+}
+.div-14 {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+@media (max-width: 991px) {
+  .div-14 {
+    white-space: initial;
+  }
+}
+.div-15 {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+}
+@media (max-width: 991px) {
+  .div-15 {
+    white-space: initial;
+  }
+}
+.div-16 {
+  font-family: Inter, sans-serif;
   border-radius: 17px;
   background-color: #f9f59e;
+  justify-content: center;
+  padding: 9px 31px;
 }
-
-.div11 {
-  position: absolute;
-  top: 177px;
-  left: 365px;
-  width: 379px;
-  height: 69px;
+@media (max-width: 991px) {
+  .div-16 {
+    white-space: initial;
+    padding: 0 20px;
+  }
 }
-
-.inner {
-  position: absolute;
-  height: 100%;
+.div-17 {
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
+}
+.div-18 {
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
+}
+.div-19 {
+  border-radius: 21px;
+  background-color: #f8f8f8;
+  display: flex;
+  margin-top: 10px;
   width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
+  gap: 20px;
+  white-space: nowrap;
+  text-align: center;
+  padding: 18px 15px;
+}
+@media (max-width: 991px) {
+  .div-19 {
+    white-space: initial;
+  }
+}
+.div-20 {
+  display: flex;
+  gap: 19px;
+}
+@media (max-width: 991px) {
+  .div-20 {
+    white-space: initial;
+  }
+}
+.div-21 {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+}
+@media (max-width: 991px) {
+  .div-21 {
+    white-space: initial;
+  }
+}
+.div-22 {
+  font-family: Inter, sans-serif;
   border-radius: 17px;
   background-color: #99ff89;
+  justify-content: center;
+  padding: 9px 31px;
 }
-
-.div17 {
-  position: absolute;
-  top: 256px;
-  left: 365px;
-  width: 379px;
-  height: 69px;
+@media (max-width: 991px) {
+  .div-22 {
+    white-space: initial;
+    padding: 0 20px;
+  }
 }
-
-.rectangleDiv {
-  position: absolute;
-  height: 100%;
+.div-23 {
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
+}
+.div-24 {
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
+}
+.div-25 {
+  border-radius: 21px;
+  background-color: #f8f8f8;
+  display: flex;
+  margin-top: 10px;
   width: 100%;
-  top: 0%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
+  gap: 20px;
+  white-space: nowrap;
+  text-align: center;
+  padding: 18px 15px;
+}
+@media (max-width: 991px) {
+  .div-25 {
+    white-space: initial;
+  }
+}
+.div-26 {
+  display: flex;
+  gap: 19px;
+}
+@media (max-width: 991px) {
+  .div-26 {
+    white-space: initial;
+  }
+}
+.div-27 {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+}
+@media (max-width: 991px) {
+  .div-27 {
+    white-space: initial;
+  }
+}
+.div-28 {
+  font-family: Inter, sans-serif;
   border-radius: 17px;
   background-color: #ffade3;
+  justify-content: center;
+  padding: 9px 31px;
 }
-
-.div23 {
-  position: absolute;
-  top: 335px;
-  left: 365px;
-  width: 379px;
-  height: 69px;
+@media (max-width: 991px) {
+  .div-28 {
+    white-space: initial;
+    padding: 0 20px;
+  }
 }
-
-.image17Parent {
-  position: absolute;
-  top: 33px;
-  left: 66px;
-  width: 811px;
-  height: 411px;
+.div-29 {
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
 }
-
-.parent {
-  position: absolute;
-  top: 153px;
-  left: 232px;
-  width: 877px;
-  height: 523px;
-}
-
-.div {
-  width: 100%;
-  position: relative;
-  background-color: #fff;
-  height: 832px;
-  overflow: hidden;
-  text-align: center;
-  font-size: 20px;
-  color: #000;
-  font-family: Inter;
+.div-30 {
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 300 20px Inter, sans-serif;
 }
 </style>
