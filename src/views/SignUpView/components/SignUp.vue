@@ -295,6 +295,7 @@ const signUp = () => {
   }
 
   .cancel-btn {
+    display: flex;
     font-family: Inter, sans-serif;
     justify-content: center;
     align-items: center;
