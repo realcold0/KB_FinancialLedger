@@ -17,31 +17,31 @@
                 <div class="class">
                     <label for="class">분류</label> <br>
                     <div class="selectWrapper">
-                        <select name="class" id="" class="searchInput" v-model="search.class">
+                        <select name="class" id="" class="searchInput" v-model="searchCategory.class">
                         <option value="지출">지출</option>
                         <option value="수입">수입</option>
-                        <option value="" selected>선택</option>
+                        <option value="" selected>전체</option>
                     </select>
                     </div>
                     
                 </div>
                 <div class="category">
                     <label for="category">카테고리</label> <br>
-                    <select name="category" id="category" class="searchInput" v-model="search.category">
+                    <select name="category" id="category" class="searchInput" v-model="searchCategory.category">
                         <option value="식비">식비</option>
                         <option value="교통">교통</option>
                         <option value="생활">생활</option>  
                         <option value="쇼핑/뷰티">쇼핑/뷰티</option>  
-                        <option value="" selected>선택</option>
+                        <option value="" selected>전체</option>
                     </select>
                 </div>
 
                 <div class="payment">
                     <label for="payment">결제 수단</label> <br>
-                    <select name="payment" id="payment" class="searchInput" v-model="search.payment">
+                    <select name="payment" id="payment" class="searchInput" v-model="searchCategory.payment">
                         <option value="현금">현금</option>
                         <option value="카드">카드</option>
-                        <option value="" selected>선택</option>
+                        <option value="" selected>전체</option>
                     </select>
                 </div>
 
@@ -50,12 +50,12 @@
             
 
         </div>
-        <ExpenseList></ExpenseList>  
+        <ExpenseList :search="search"></ExpenseList>  
     </div>
 </template>
 
 <script>
-    import { ref } from "vue";
+    import { ref,reactive } from "vue";
 import ExpenseList from "./ExpenseList.vue";
     import 'v-calendar/style.css';
 
@@ -63,6 +63,7 @@ import ExpenseList from "./ExpenseList.vue";
         setup() {
             const current = ref(new Date());
             
+            const searchCategory = reactive({"class" : "", "category" : "", "payment" : ""});
 
             const search = ref({
                 date : {
@@ -79,9 +80,13 @@ import ExpenseList from "./ExpenseList.vue";
                 search.value.date.year = current.value.getFullYear().toString();
                 search.value.date.month = (current.value.getMonth()+1).toString().padStart(2,"0");
                 search.value.date.date = current.value.getDate().toString().padStart(2, "0");
+                search.value.class = searchCategory.class;
+                search.value.category = searchCategory.category;
+                search.value.payment = searchCategory.payment;
+                
                 console.log(search.value);
             }
-            return {current, search, test};
+            return {current, search, test, searchCategory};
         },
         components : {
             ExpenseList,
@@ -129,6 +134,7 @@ import ExpenseList from "./ExpenseList.vue";
         line-height: normal;
         background-color: rgba(0, 0, 0, 0);
         border: none;
+        cursor: pointer;
     }
     
     option{
