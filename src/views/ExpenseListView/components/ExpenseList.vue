@@ -26,7 +26,7 @@
                                 <div class="div-18">
                                     <div class="div-19">
                                         <div :class="categoryClass(item_detail.category)">{{ item_detail.category }}</div>
-                                            <div style="display: flex;">
+                                            <div class="div-22">
                                                 <div class="div-21">{{ item_detail.memo }}</div>
                                                 <div class="div-21">{{ item_detail.payment }}</div>
                                             </div>
@@ -322,10 +322,11 @@
     }
   }
   .div-19 {
-    justify-content: start;
+    justify-content: space-between;
     margin-left: 5%;
+    margin-right: 5%;
     display: flex;
-    gap: 10%;
+    width: 100%;
   }
   @media (max-width: 991px) {
     .div-19 {
@@ -412,12 +413,16 @@
   .div-21 {
     margin: auto 0 0 10%;
     font: medium Inter, sans-serif;
+    width: 100%;
   }
 
   .div-22 {
-    flex-grow: 1;
     margin: auto 0 0 10%;
     font: medium Inter, sans-serif;
+    display: flex;
+    gap: 50%;
+    font-weight: 900;
+    color: #434343;
   }
   @media (max-width: 991px) {
     .div-22 {
