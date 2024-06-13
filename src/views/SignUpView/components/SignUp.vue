@@ -74,7 +74,7 @@ const createAccount = () => {
         "total_income" : 0,
         "total_expand" : 0,
         "profit" : 0,
-        "user_id" : data.userId
+        "id" : data.userId
     };
 
     axios.post(`http://localhost:3001/account`, sendData)
@@ -108,6 +108,7 @@ const signUp = () => {
     axios.post("http://localhost:3001/user",(sendData))
     .then(res => {
         alert("회원가입 성공");
+        createAccount();
         router.push("/login");
     })
     .catch(e => {
