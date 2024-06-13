@@ -122,7 +122,7 @@
 
                     // 정렬된 키를 기준으로 새로운 객체 생성
                     const sortedGrouped = sortedKeys.reduce((acc, key) => {
-                        acc[key] = grouped[key];
+                        acc[key] = grouped[key].slice().reverse();
                         return acc;
                     }, {});
 
@@ -385,7 +385,7 @@
 
   .category_traffic {
     border-radius: 11px;
-    background-color: #9fd7ff;
+    background-color: #99ff89;
     text-align: center;
     justify-content: center;
     padding: 6px 26px;
@@ -415,7 +415,7 @@
 
   .category_life {
     border-radius: 11px;
-    background-color: #99ff89;
+    background-color: #9fd7ff;
     text-align: center;
     justify-content: center;
     padding: 6px 26px;
