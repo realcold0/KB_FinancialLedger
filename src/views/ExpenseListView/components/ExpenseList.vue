@@ -17,7 +17,7 @@
                     <li class="list-item-day" v-for="item_day in data.groupedList">
                         <div style="justify-content: space-between; display: flex;">
                             <div class="date">
-                                {{ parseInt(item_day[0].date.split("-")[1]) + "월 " + parseInt(item_day[0].date.split("-")[1]) + "일"}}
+                                {{ parseInt(item_day[0].date.split("-")[1]) + "월 " + parseInt(item_day[0].date.split("-")[2]) + "일"}}
                             </div>
                             <ExpenseListItemAmount :data="item_day"/>
                         </div> 
@@ -44,7 +44,7 @@
 </template>
   
   <script setup>
-    import { reactive, onMounted, onUpdated } from 'vue';
+    import { reactive, onMounted, watch } from 'vue';
     import TotalAmount from '@/components/TotalAmount.vue';
     import axios from 'axios';
     import ExpenseListItemAmount from './ExpenseListItemAmount.vue';
@@ -87,17 +87,30 @@
             console.log(e);
             });
         };
-    const groupByDate = (list) => {
-        return list.reduce((acc, item) => {
-            const date = item.date;
-            if (!acc[date]) {
-            acc[date] = [];
-            }
-            acc[date].push(item);
-            return acc;
-        }, {});
-    };
 
+
+          // 날짜를 키로 잡아서 다시 그룹화 후, 날짜를 기준으로 최신순 정렬하는 메소드
+            const groupByDate = (list) => {
+                const grouped = list.reduce((acc, item) => {
+                    const date = item.date;
+                    if (!acc[date]) {
+                        acc[date] = [];
+                    }
+                    acc[date].push(item);
+                    return acc;
+                    }, {});
+
+                    // 객체의 키를 배열로 변환하여 정렬
+                    const sortedKeys = Object.keys(grouped).sort((a, b) => new Date(b) - new Date(a));
+
+                    // 정렬된 키를 기준으로 새로운 객체 생성
+                    const sortedGrouped = sortedKeys.reduce((acc, key) => {
+                        acc[key] = grouped[key];
+                        return acc;
+                    }, {});
+
+                    return sortedGrouped;
+                };
 
 
     const getList = async() => { 
@@ -112,20 +125,6 @@
 
             updateAccount(data.list);
             
-            // const filteredList = data.groupedList.filter(item => {
-            //     const dateCondition = search.date.year === "" || item[0].date.year === search.date.year &&
-            //               search.date.month === "" || item[0].date.month === search.date.month &&
-            //               search.date.date === "" || item[0].date.date === search.date.date;
-            //     const classCondition = search.class === "" || item[0].class === search.class;
-            //     const categoryCondition = search.category === "" || item[0].category === search.category;
-            //     const paymentCondition = search.payment === "" || item[0].payment === search.payment;
-
-            //     return dateCondition && classCondition && categoryCondition && paymentCondition;
-
-            // })
-
-
-
         })
         .catch(e => {
             console.log(e);
@@ -136,9 +135,32 @@
     onMounted(() => {
         getList();
     })
-    onUpdated(() => {
-        console.log(props.search);
-    })
+            // 부모 컴포넌트로부터 받아온 조건을 필터링
+            const filterList = () => {
+                const search = props.search;
+                const filteredList = data.list.filter(item => {
+                    const date = item.date.split('-');
+                    
+                    const yearCondition = !search.date.year || date[0] === search.date.year;
+                    const monthCondition = !search.date.month || date[1] === search.date.month;
+                    const dayCondition = !search.date.date || date[2] === search.date.date;
+                    const dateCondition = yearCondition && monthCondition && dayCondition;
+
+                    const classCondition = !search.class || item.class === search.class;
+                    const categoryCondition = !search.category || item.category === search.category;
+                    const paymentCondition = !search.payment || item.payment === search.payment;
+
+                return dateCondition && classCondition && categoryCondition && paymentCondition;
+                })
+
+                console.log(filteredList);
+
+                data.groupedList = groupByDate(filteredList);
+                data.totalCnt = filteredList.length;
+            };
+
+            // props 변경 사항 추적하여 적용
+            watch(() => props.search, filterList, { deep: true });
 
   </script>
 
@@ -287,7 +309,7 @@
       white-space: initial;
     }
   }
-  .div-20 {
+  .category_traffic {
     border-radius: 11px;
     background-color: #9fd7ff;
     text-align: center;
@@ -296,11 +318,56 @@
     font: medium Inter, sans-serif;
   }
   @media (max-width: 991px) {
-    .div-20 {
+    .category_traffic {
       white-space: initial;
       padding: 0 20px;
     }
   }
+  .category_shopping {
+    border-radius: 11px;
+    background-color: #f9f59e;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .category_shopping {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
+  .category_life {
+    border-radius: 11px;
+    background-color: #99ff89;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .category_life {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
+  .category_food {
+    border-radius: 11px;
+    background-color: #ffade3;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .category_food {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
   .div-21 {
     margin: auto 0 0 10%;
     font: medium Inter, sans-serif;
