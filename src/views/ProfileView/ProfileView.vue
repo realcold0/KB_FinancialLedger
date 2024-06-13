@@ -48,12 +48,13 @@ const logout = () => {
 }
 
 onMounted(() => {
+  if(!sessionStorage.getItem("id")){
+      router.push("/login");  
+    }
+  else{
     const userId = sessionStorage.getItem("id");
     console.log(userId);
-    if(userId == "") {
-        alert("적합하지 않은경로");
-        router.push("/login");
-    }
+    
     axios.get(`http://localhost:3001/user?id=${userId}`)
     .then(res => {
         const userData = res.data[0];
@@ -67,6 +68,7 @@ onMounted(() => {
         console.log(e);
         router.push("/login");
     })
+  }
 
 })
 
