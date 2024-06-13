@@ -376,6 +376,8 @@
     .div-20 {
       font: small Inter, sans-serif;
       width: 100px;
+      padding: 1% 2%;
+
     }
   }
 
