@@ -59,10 +59,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, watch } from "vue";
 import axios from "axios";
 import { GChart } from "vue-google-charts";
-
+import { useDateStore } from "@/stores/date";
 export default defineComponent({
   name: "Frame",
   components: {
@@ -103,6 +103,9 @@ export default defineComponent({
       교통: 0,
       식비: 0,
     });
+
+    let overallTotal = 0;
+
     const categoryPercentages = ref<{ [key: string]: string }>({
       생활: "0",
       "쇼핑/뷰티": "0",
@@ -110,22 +113,31 @@ export default defineComponent({
       식비: "0",
     });
     const totalExpense = ref(0);
-
+    const dateStore = useDateStore();
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/transactionDetail"
-        );
+        overallTotal = 0;
+        totals.value = {
+          생활: 0,
+          "쇼핑/뷰티": 0,
+          교통: 0,
+          식비: 0,
+        };
 
         const user_id = sessionStorage.getItem("id");
-        console.log(user_id);
+        const response = await axios.get(
+          `http://localhost:3001/transactionDetail?user_id=${user_id}`
+        );
+
+        console.log(dateStore.month);
 
         const data = response.data.filter(
-          (item: any) => item.user_id === parseInt(user_id)
+          (item: any) => (item.class === "지출") &&
+          (parseInt(item.date.split("-")[1]) === parseInt(dateStore.month))
         );
 
         console.log(data);
-        let overallTotal = 0;
+        
 
         data.forEach((item: any) => {
           if (categories.includes(item.category)) {
@@ -142,8 +154,8 @@ export default defineComponent({
           if (overallTotal > 0) {
             // 각 카테고리의 퍼센티지 계산
             const percentage = (
-              (totals.value[category] / overallTotal) *
-              100
+              (totals.value[category] / overallTotal) * 100
+              
             ).toFixed(1);
             // Google 차트 데이터에 추가
             chartDataArray.push([category, parseFloat(percentage)]);
@@ -161,7 +173,11 @@ export default defineComponent({
       }
     };
 
-    onMounted(fetchData);
+    onMounted(() => {
+      fetchData();
+    });
+
+    watch(() => dateStore.month, fetchData, totals)
 
     return {
       categories,
