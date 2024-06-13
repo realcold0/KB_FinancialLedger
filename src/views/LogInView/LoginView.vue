@@ -21,6 +21,7 @@ import Login from './components/Login.vue';
   .div-9 {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-align: center;
+    font-size: 40px;
     -webkit-text-stroke-width: 1;
     -webkit-text-stroke-color: #000;
     justify-content: center;
@@ -29,7 +30,7 @@ import Login from './components/Login.vue';
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     background-color: #FAEBCD;
     z-index: 10;
-    margin-top: -19px;
+    margin-top: -15px;
     width: 586px;
     height: 40px;
     max-width: 100%;
@@ -40,9 +41,10 @@ import Login from './components/Login.vue';
   }
   @media (max-width: 991px) {
     .div-9 {
-      font-size: 40px;
+      font-size: 25px;
+      width: 300px;
       white-space: initial;
-      padding: 0 20px;
+      padding: 10px 20px;
     }
   }
   </style>
