@@ -79,7 +79,6 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Myeongjo&display=swap');
 
 .div {
-  margin-top: -1%;
   display: flex;
   padding-bottom: 73px;
   flex-direction: column;
@@ -91,27 +90,26 @@ onMounted(() => {
   -webkit-text-stroke-width: 1;
   -webkit-text-stroke-color: #000;
   justify-content: center;
-  align-items: center;
   border-radius: 14px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: #FAEBCD;
   z-index: 10;
   width: 590px;
-  height: 35px;
+  height: 100%;
   max-width: 100%;
   color: #434343;
   white-space: nowrap;
   padding: 12px 47px;
-  font: 400 40px Actor, sans-serif;
+  font: 400 30px Actor, sans-serif;
   text-align: center;
-  margin-top: -30px;
+  margin-top: -15px;
 }
 
 @media (max-width: 991px) {
   .sub {
-    font-size: 40px;
+    font-size: 30px;
     white-space: initial;
-    padding: 0 20px;
+    padding: 10px 20px;
   }
 }
 
@@ -129,6 +127,7 @@ onMounted(() => {
 @media (max-width: 991px) {
   .profile-backgorund {
     padding: 0 20px;
+    height: 100%;
   }
 }
 
@@ -140,6 +139,7 @@ onMounted(() => {
 @media (max-width: 991px) {
   .div-11 {
     flex-direction: column;
+    align-items: center;
     gap: 0px;
   }
 }
@@ -155,7 +155,9 @@ onMounted(() => {
 
 @media (max-width: 991px) {
   .left {
-    width: 100%;
+    width: 35%;
+    margin: 10px 0 0 0;
+
   }
 }
 
@@ -204,7 +206,8 @@ onMounted(() => {
 @media (max-width: 991px) {
   .div-13 {
     white-space: initial;
-    padding: 0 20px;
+    padding: 7px 20px;
+    
   }
 }
 
@@ -234,6 +237,7 @@ onMounted(() => {
 @media (max-width: 991px) {
   .right {
     width: 100%;
+    height: 100%;
   }
 }
 
@@ -253,6 +257,7 @@ onMounted(() => {
 @media (max-width: 991px) {
   .userInfo {
     margin-top: 0px;
+    height: 100%;
   }
 }
 
