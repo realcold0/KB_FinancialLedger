@@ -16,11 +16,11 @@ const totalAmount = reactive({totalIncome : "", totalExpense : ""});
 
 const userId = sessionStorage.getItem("id");
 
-const getList = () => {
-    axios.get(`http://localhost:3001/account?user_id=${userId}`)
+const getAccount= () => {
+    axios.get(`http://localhost:3001/account/${userId}`)
     .then(res => {
-        totalAmount.totalIncome = res.data[0].total_income;
-        totalAmount.totalExpense = res.data[0].total_expand;
+        totalAmount.totalIncome = res.data.total_income;
+        totalAmount.totalExpense = res.data.total_expand;
         console.log(totalAmount);
     })
     .catch(e => {
@@ -30,7 +30,7 @@ const getList = () => {
 }
 
 onMounted(() => {
-    getList();
+    getAccount();
 })
 
 

@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-            <div>
+            <div class="list">
                 <ul>
                     <li class="list-item-day" v-for="item_day in data.groupedList">
                         <div style="justify-content: space-between; display: flex;">
@@ -25,12 +25,12 @@
                             <div class="div-17">
                                 <div class="div-18">
                                     <div class="div-19">
-                                        <div class="div-20">{{ item_detail.category }}</div>
+                                        <div :class="categoryClass(item_detail.category)">{{ item_detail.category }}</div>
                                             <div style="display: flex;">
                                                 <div class="div-21">{{ item_detail.memo }}</div>
                                                 <div class="div-21">{{ item_detail.payment }}</div>
                                             </div>
-                                        <div class="div-22">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount.toLocaleString('ko-KR') }}원</div>
+                                        <div class="div-22">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount.toLocaleString('ko-kr') }}원</div>
                                     </div>
                                 </div>
                             </div>
@@ -44,12 +44,12 @@
 </template>
   
   <script setup>
-    import { reactive, onMounted, watch } from 'vue';
+    import { ref, reactive, onMounted, watch, computed } from 'vue';
     import TotalAmount from '@/components/TotalAmount.vue';
     import axios from 'axios';
     import ExpenseListItemAmount from './ExpenseListItemAmount.vue';
     const data = reactive({list : "", totalCnt : "", groupedList : ""});
-
+    let accountId = "";
     const userId = sessionStorage.getItem("id");
 
     const props = defineProps({
@@ -59,38 +59,55 @@
         }
     });
 
+    const categoryClass = (category) => {
+      if (category === '식비') {
+        return 'div-20 category_food';
+      } else if (category === '생활') {
+        return 'div-20 category_life';
+      } else if (category === '교통') {
+        return 'div-20 category_traffic';
+      } else if (category === '쇼핑/뷰티') {
+        return 'div-20 category_shopping';
+      } 
+       else {
+        return 'div-20';
+      }
+    };
+
     const updateAccount = (list) => {
-        let income = 0;
-        let expense = 0;
-        let profit = 0; 
-        list.forEach(e => {
-            if (e.class === "지출") {
-            income += e.amount;
-            } else {
-            expense += e.amount;
-            }
-        });
+      let income = 0;
+      let expense = 0;
+      let profit = 0; 
 
-        profit = income - expense;
+      list.forEach(e => {
+          if (e.class === "수입") {
+              income += e.amount;
+          } else if (e.class === "지출") {
+              expense += e.amount;
+          }
+      });
 
-        const accountData = {
-            total_income: income,
-            total_expand: expense,
-            profit: profit
-        };
-        
-        axios.put(`http://localhost:3001/account/${userId}`, accountData)
-            .then(res => {
-            console.log(res.data);
-            })
-            .catch(e => {
-            console.log(e);
-            });
-        };
+      profit = income - expense;
 
+      const accountData = {
+          total_income: income,
+          total_expand: expense,
+          profit: profit,
+          id: userId
+      };
 
-          // 날짜를 키로 잡아서 다시 그룹화 후, 날짜를 기준으로 최신순 정렬하는 메소드
-            const groupByDate = (list) => {
+      axios.put(`http://localhost:3001/account/${userId}`, accountData)
+          .then(res => {
+              console.log(res.data);
+          })
+          .catch(e => {
+              console.log(e);
+          });
+    };
+
+  
+    // 날짜를 키로 잡아서 다시 그룹화 후, 날짜를 기준으로 최신순 정렬하는 메소드
+    const groupByDate = (list) => {
                 const grouped = list.reduce((acc, item) => {
                     const date = item.date;
                     if (!acc[date]) {
@@ -110,7 +127,7 @@
                     }, {});
 
                     return sortedGrouped;
-                };
+    };
 
 
     const getList = async() => { 
@@ -135,8 +152,9 @@
     onMounted(() => {
         getList();
     })
-            // 부모 컴포넌트로부터 받아온 조건을 필터링
-            const filterList = () => {
+    
+    // 부모 컴포넌트로부터 받아온 조건을 필터링
+    const filterList = () => {
                 const search = props.search;
                 const filteredList = data.list.filter(item => {
                     const date = item.date.split('-');
@@ -157,10 +175,10 @@
 
                 data.groupedList = groupByDate(filteredList);
                 data.totalCnt = filteredList.length;
-            };
+    };
 
-            // props 변경 사항 추적하여 적용
-            watch(() => props.search, filterList, { deep: true });
+    // props 변경 사항 추적하여 적용
+    watch(() => props.search, filterList, { deep: true });
 
   </script>
 
@@ -188,7 +206,6 @@
   }
 
 
-
   .div {
     display: flex;
     padding-bottom: 31px;
@@ -196,6 +213,8 @@
     z-index: auto;
     position: relative;
   }
+
+
   .div-2 {
     align-self: center;
     display: flex;
@@ -207,8 +226,12 @@
   @media (max-width: 991px) {
     .div-2 {
       max-width: 100%;
+      align-self: center;
+      width: 100%;
+      flex-direction: column;
     }
   }
+  
   .div-3 {
     display: flex;
     margin-top: 60px;
@@ -309,6 +332,24 @@
       white-space: initial;
     }
   }
+
+  .div-20 {
+    border-radius: 11px;
+    background-color: #ffd99f;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-20 {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
+
+
   .category_traffic {
     border-radius: 11px;
     background-color: #9fd7ff;
