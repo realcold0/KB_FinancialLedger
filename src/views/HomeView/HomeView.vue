@@ -102,12 +102,13 @@ import Calendar from "./components/Calendar.vue"
     flex-basis: auto;
 }
 
-.chart-image,
 .chart-image-secondary {
     aspect-ratio: 1.47;
     object-fit: auto;
     object-position: center;
     width: 100%;
+    background-color: #f8f8f8;
+    border-radius: 30px;
     align-self: center;
     margin: 6px 17px 0;
 }
