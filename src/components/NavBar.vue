@@ -10,7 +10,7 @@
         <button  class="monthManageButton"  @click="decreaseMonth"><img loading="lazy" src="@/assets/img/leftArrow.png" class="nav-icon" /></button>
         <div class="date-text">
           <div class="month">{{ date.month }}월</div>
-          <div class="year"><span style="font-size: 25px">{{ date.year }}</span></div>
+          <div class="year">{{ date.year }}</div>
         </div>
         <button @click="increaseMonth" class="monthManageButton"><img loading="lazy" src="@/assets/img/rightArrow.png" class="nav-icon"  /> </button>
       </div>
@@ -34,10 +34,10 @@
       </ul>
 
       <ul class="option">
-        <li><img loading="lazy" :src="themeIcon" class="nav-icon" @click="toggleTheme" /></li>
+        <li><img loading="lazy" :src="themeIcon" class="nav-icon-option" @click="toggleTheme" /></li>
         <li>
           <RouterLink :to="{ name: 'profile' }"><img loading="lazy" src="@/assets/img/Account_circle.png"
-              class="nav-icon" /></RouterLink>
+              class="nav-icon-option" /></RouterLink>
         </li>
       </ul>
     </div>
@@ -86,7 +86,8 @@ const themeIcon = computed(() => {
     flex-direction: column;
     align-items: center;
     gap: 0px;
-    height: 280px;
+    height: 200px;
+    justify-content: normal;
   }
 }
 
@@ -112,11 +113,23 @@ const themeIcon = computed(() => {
 @media (max-width: 991px) {
   .logosection {
     margin: 0;
+    width: 200px;
+    height: 70px;
+  }
+  .logosection img {
+    width: 100%;
+    height: 100%;
   }
 }
 .datesection {
   display: flex;
   align-items: center;
+}
+
+@media (max-width : 991px){
+  .datesection {
+    margin-bottom: 10px;
+  }
 }
 
 .datesection .nav-icon {
@@ -150,6 +163,11 @@ const themeIcon = computed(() => {
   line-height: normal;
   text-align: center;
 }
+@media (max-width: 991px) {
+  .month {
+      font-size: 30px;
+  }
+}
 
 .year {
   color: #434343;
@@ -161,6 +179,13 @@ const themeIcon = computed(() => {
   text-align: center;
 
 }
+
+@media (max-width: 991px) {
+  .year {
+      font-size: 15px;
+  }
+}
+
 
 .bottomSection {
   display: flex;
@@ -192,6 +217,22 @@ const themeIcon = computed(() => {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+
+@media (max-width: 991px) {
+  .bottomSection ul{
+    margin: 0;
+  }
+  .bottomSection li{
+    height: 30px;
+  }
+  .bottomSection li img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+
 .menuSection {
   list-style: none;
   display: flex;
@@ -202,6 +243,18 @@ const themeIcon = computed(() => {
   margin: 0 5px;
 }
 
+@media (max-width: 991px) {
+  .menuSection li:nth-child(2){
+    height: 25px;
+    width: 30px;
+  }
+  .menuSection li:nth-child(3){
+    height: 30px;
+    width: 35px;
+    margin-left: 0px;
+  }
+}
+
 .option {
   list-style: none;
   display: flex;
@@ -209,6 +262,12 @@ const themeIcon = computed(() => {
   cursor: pointer;
 }
 
+@media (max-width: 991px) {
+  .option li {
+    width: 33px;
+    height: 34px;
+  }
+}
 
 
 
