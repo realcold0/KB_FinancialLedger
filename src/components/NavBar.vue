@@ -7,12 +7,12 @@
       </div>
 
       <div class="datesection">
-        <img loading="lazy" src="@/assets/img/leftArrow.png" class="nav-icon" @click="decreaseMonth" />
+        <button  class="monthManageButton"  @click="decreaseMonth"><img loading="lazy" src="@/assets/img/leftArrow.png" class="nav-icon" /></button>
         <div class="date-text">
           <div class="month">{{ date.month }}월</div>
           <div class="year"><span style="font-size: 25px">{{ date.year }}</span></div>
         </div>
-        <img loading="lazy" src="@/assets/img/rightArrow.png" class="nav-icon" @click="increaseMonth" />
+        <button @click="increaseMonth" class="monthManageButton"><img loading="lazy" src="@/assets/img/rightArrow.png" class="nav-icon"  /> </button>
       </div>
 
     </div>
@@ -119,15 +119,32 @@ const themeIcon = computed(() => {
   align-items: center;
 }
 
-.datesection img {
+.datesection .nav-icon {
   margin: 0 50px;
+  height: 15px;
   
+}
+
+.datesection .date-text{
+  width: 100px;
+}
+
+.datesection .monthManageButton {
+  height: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+
+.datesection .monthManageButton:hover {
+  background-color: #bc9856;
 }
 
 .month {
   color: #434343;
   font-family: Inter;
-  font-size: 40px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -158,7 +175,6 @@ const themeIcon = computed(() => {
     width: 100%;
     justify-content: center;
     padding-right: 0;
-
   }
 }
 
@@ -166,6 +182,14 @@ const themeIcon = computed(() => {
 .bottomSection ul {
   /* 왜 패딩 들어가있는지 모르겠음 */
   padding-left: 0;
+}
+
+.bottomSection li{
+  border-radius: 5px;
+}
+
+.bottomSection li:hover{
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .menuSection {
@@ -182,5 +206,10 @@ const themeIcon = computed(() => {
   list-style: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
+
+
+
+
 </style>
