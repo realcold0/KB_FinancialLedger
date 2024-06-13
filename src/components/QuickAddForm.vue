@@ -141,6 +141,7 @@ export default {
   flex-direction: column;
   font-size: 12px;
   z-index: 1000;
+
 }
 
 .close-button {
@@ -162,6 +163,7 @@ export default {
   flex-direction: column;
   font-size: 12px;
   z-index: 1000;
+  margin-right: 10%;
   }
 }
 
