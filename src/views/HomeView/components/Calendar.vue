@@ -20,33 +20,39 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import koLocale from '@fullcalendar/core/locales/ko';
 import { useDateStore } from '@/stores/date';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 const dashboard = ref({
 	total_income: 0,
 	total_expand: 0,
 	profit: 0,
 });
+const router = useRouter();
 const calendar = ref(null);
 const dateStore = useDateStore();
 const loading = ref(true);
 const error = ref(null);
 const fetchDashboardData = async () => {
-	try {
-		const id = sessionStorage.getItem('id');
-		const response = await axios.get(`http://localhost:3001/account?id=${id}`);
-		const data = response.data;
-		const userDashboard = data.find(user => user.id == id);
-		if (userDashboard) {
-			dashboard.value = userDashboard;
-		} else {
-			error.value = 'User data not found';
-		}
-	} catch (err) {
-		error.value = err.message;
-	} finally {
-		loading.value = false;
-	}
+  try {
+    const id = sessionStorage.getItem('id');
+    if (!id) {
+      throw new Error('로그인이 필요합니다');
+    }
+    const response = await axios.get(`http://localhost:3001/account?id=${id}`);
+    const data = response.data;
+    const userDashboard = data.find(user => user.id == id);
+    if (userDashboard) {
+      dashboard.value = userDashboard;
+    } else {
+      error.value = 'User data not found';
+    }
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
 const calendarOptions = ref({
 	plugins: [dayGridPlugin, interactionPlugin],
 	locale: koLocale,
@@ -60,46 +66,49 @@ const calendarOptions = ref({
 	events: []
 });
 const fetchTransactionHistory = async () => {
-	try {
-		const id = sessionStorage.getItem('id');
-		const response = await axios.get(`http://localhost:3001/transactionDetail?user_id=${id}`);
-		const transactions = response.data;
-		const colorMap = {
-			'수입': '#0000FF',
-			'지출': '#E47069',
-		}
-		// 거래 내역 데이터를 FullCalendar 이벤트 형식으로 변환
-		const events = transactions.map(transaction => ({
-			title: `${transaction.class === '수입' ? '+' : '-'}${parseInt(transaction.amount).toLocaleString()} 원`,
-			start: transaction.date,
-			extendedProps: {
-				category: transaction.category,
-				payment: transaction.payment
-			},
-			backgroundColor: "transparent",
-			borderColor: "transparent",
-			textColor: colorMap[transaction.class] || '#CCCCCC'
-		}));
-		// 일별 쓴 내역 추가
-		const dailyTransactions = groupTransactionsByDay(transactions);
-		Object.keys(dailyTransactions).forEach(date => {
-			const totalAmount = dailyTransactions[date].reduce((total, transaction) => {
-				return transaction.class === '수입' ? total + parseInt(transaction.amount) : total - parseInt(transaction.amount);
-			}, 0);
-			events.push({
-				title: `지출 : ${totalAmount.toLocaleString()} 원`,
-				start: date,
-				backgroundColor: "transparent",
-				borderColor: "transparent",
-				textColor: '#000000'
-			});
-		});
-		calendarOptions.value.events = events;
-	} catch (err) {
-		error.value = err.message;
-	} finally {
-		loading.value = false;
-	}
+  try {
+    const id = sessionStorage.getItem('id');
+    if (!id) {
+      throw new Error('로그인이 필요합니다');
+    }
+    const response = await axios.get(`http://localhost:3001/transactionDetail?user_id=${id}`);
+    const transactions = response.data;
+    const colorMap = {
+      '수입': '#0000FF',
+      '지출': '#E47069',
+    };
+    // 거래 내역 데이터를 FullCalendar 이벤트 형식으로 변환
+    const events = transactions.map(transaction => ({
+      title: `${transaction.class === '수입' ? '+' : '-'}${parseInt(transaction.amount).toLocaleString()} 원`,
+      start: transaction.date,
+      extendedProps: {
+        category: transaction.category,
+        payment: transaction.payment
+      },
+      backgroundColor: "transparent",
+      borderColor: "transparent",
+      textColor: colorMap[transaction.class] || '#CCCCCC'
+    }));
+    // 일별 쓴 내역 추가
+    const dailyTransactions = groupTransactionsByDay(transactions);
+    Object.keys(dailyTransactions).forEach(date => {
+      const totalAmount = dailyTransactions[date].reduce((total, transaction) => {
+        return transaction.class === '수입' ? total + parseInt(transaction.amount) : total - parseInt(transaction.amount);
+      }, 0);
+      events.push({
+        title: `지출 : ${totalAmount.toLocaleString()} 원`,
+        start: date,
+        backgroundColor: "transparent",
+        borderColor: "transparent",
+        textColor: '#000000'
+      });
+    });
+    calendarOptions.value.events = events;
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    loading.value = false;
+  }
 };
 // 거래 내역을 일자별로 그룹화하는 함수
 const groupTransactionsByDay = (transactions) => {
@@ -114,8 +123,12 @@ const groupTransactionsByDay = (transactions) => {
 	return groupedTransactions;
 };
 onMounted(async () => {
-	await fetchTransactionHistory();
-	await fetchDashboardData();
+  await fetchTransactionHistory();
+  await fetchDashboardData();
+  if (error.value === '로그인이 필요합니다') {
+    alert(error.value);
+    router.push("/login");
+  }
 });
 function handleDateClick(arg) {
 	alert('date click! ' + arg.dateStr);
