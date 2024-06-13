@@ -143,13 +143,19 @@ watch(
 </script>
 
 <style scoped>
+.fc{
+  background-color: #F8F8F8;
+  border-radius: 10px; /* 꼭지점을 라운드 처리 */
+  margin: 20px;;
+}
+
 .summary-records {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-weight: 700;
-    margin: 0 auto;
+    margin: 10px;
 }
 
 .summary-item {
