@@ -37,7 +37,7 @@ html[theme="light"] {
 }
 
 html[theme="dark"] {
-  filter: invert(100%) hue-rotate(180deg);
+  filter: invert(100%) hue-rotate(180deg) sepia(100%) brightness(130%);
   transition: 0.4s;
 }
 </style>
