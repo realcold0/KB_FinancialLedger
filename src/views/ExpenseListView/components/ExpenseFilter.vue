@@ -45,7 +45,7 @@
                     </select>
                 </div>
 
-                <button class="searchInput"  @click="test"><img src="@/assets/img/search.png" alt="" ></button>
+                <button class="searchButton"  @click="test"><img src="@/assets/img/search.png" alt="" ></button>
             </div>
             
 
@@ -102,7 +102,7 @@ import ExpenseList from "./ExpenseList.vue";
         margin: 0 auto;
         margin-top: -20px;
         align-items: center;
-        width: 876px;
+        max-width: 876px;
         border-radius: 14px;
         background-color: #FAEBCD;
         position: relative;
@@ -114,6 +114,12 @@ import ExpenseList from "./ExpenseList.vue";
         margin: 24px 47px;
         justify-content: space-between;
         width: 80%
+    }
+
+    @media (max-width: 991px) {
+        .filter {
+            margin: 12px 5px;
+        }
     }
     label {
         color: #434343;
@@ -135,7 +141,25 @@ import ExpenseList from "./ExpenseList.vue";
         border: none;
         cursor: pointer;
     }
-    
+
+    .searchButton {
+        width:  45px;
+        color: #8E9393;
+        font-family: Inter;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        cursor: pointer;
+    }
+
+    .searchButton:hover, .searchInput:hover{
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+
     option{
         background-color: #FAEBCD;
         color: #434343;
@@ -144,7 +168,6 @@ import ExpenseList from "./ExpenseList.vue";
         font-weight: bold;
         font-style: normal;
     }
-
     .searchInput .selectOption:hover {
        box-shadow: 0 0 10px 100px #434343 inset;
        background-color: yellow;
