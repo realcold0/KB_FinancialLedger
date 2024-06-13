@@ -48,24 +48,24 @@ const logout = () => {
 }
 
 onMounted(() => {
-  const userId = sessionStorage.getItem("id");
-  console.log(userId);
-  if (userId == "") {
-    alert("적합하지 않은경로");
-    router.push("/login");
-  }
-  axios.get(`http://localhost:3001/user?id=${userId}`)
+    const userId = sessionStorage.getItem("id");
+    console.log(userId);
+    if(userId == "") {
+        alert("적합하지 않은경로");
+        router.push("/login");
+    }
+    axios.get(http://localhost:3001/user?id=${userId})
     .then(res => {
-      const userData = res.data[0];
-      console.log(userData);
-      data.name = userData.name;
-      data.userId = userData.userId;
-      data.email = userData.email;
+        const userData = res.data[0];
+        console.log(userData);
+        data.name = userData.name;
+        data.userId = userData.userId;
+        data.email = userData.email;
     })
     .catch(e => {
-      alert("오류");
-      console.log(e);
-      router.push("/login");
+        alert("오류");
+        console.log(e);
+        router.push("/login");
     })
 
 })
