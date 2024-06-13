@@ -1,19 +1,22 @@
 <template>
   <nav class="navbar">
-    <div class="logosection">
-      <RouterLink :to="{ name: 'home' }"><img loading="lazy" src='@/assets/img/logo.png' class="logo-img" />
-      </RouterLink>
-    </div>
-
-    <div class="datesection">
-      <img loading="lazy" src="@/assets/img/leftArrow.png" class="nav-icon" @click="decreaseMonth" />
-      <div class="date-text">
-        <div class="month">{{ date.month }}월</div>
-        <div class="year"><span style="font-size: 25px">{{ date.year }}</span></div>
+      <div class="topSection">
+        <div class="logosection">
+        <RouterLink :to="{ name: 'home' }"><img loading="lazy" src='@/assets/img/logo.png' class="logo-img" />
+        </RouterLink>
       </div>
-      <img loading="lazy" src="@/assets/img/rightArrow.png" class="nav-icon" @click="increaseMonth" />
-    </div>
 
+      <div class="datesection">
+        <button  class="monthManageButton"  @click="decreaseMonth"><img loading="lazy" src="@/assets/img/leftArrow.png" class="nav-icon" /></button>
+        <div class="date-text">
+          <div class="month">{{ date.month }}월</div>
+          <div class="year"><span style="font-size: 25px">{{ date.year }}</span></div>
+        </div>
+        <button @click="increaseMonth" class="monthManageButton"><img loading="lazy" src="@/assets/img/rightArrow.png" class="nav-icon"  /> </button>
+      </div>
+
+    </div>
+    
     <div class="bottomSection">
       <ul class="menuSection">
         <li>
@@ -83,29 +86,65 @@ const themeIcon = computed(() => {
     flex-direction: column;
     align-items: center;
     gap: 0px;
-    height: 300px;
+    height: 280px;
+  }
+}
+
+.topSection {
+  display: flex;
+  width: 61%;
+  justify-content: space-between;
+}
+@media (max-width: 991px) {
+  .topSection {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
 .logosection {
   width: 293px;
   height: 107px;
-  margin-right: 18%;
+  margin: 46px auto 19px 33px;
+
 }
 
+@media (max-width: 991px) {
+  .logosection {
+    margin: 0;
+  }
+}
 .datesection {
   display: flex;
   align-items: center;
 }
 
-.datesection img {
-  margin: 0 10px;
+.datesection .nav-icon {
+  margin: 0 50px;
+  height: 15px;
+  
+}
+
+.datesection .date-text{
+  width: 100px;
+}
+
+.datesection .monthManageButton {
+  height: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+
+.datesection .monthManageButton:hover {
+  background-color: #bc9856;
 }
 
 .month {
   color: #434343;
   font-family: Inter;
-  font-size: 40px;
+  font-size: 45px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -131,9 +170,26 @@ const themeIcon = computed(() => {
   padding-right: 10px;
 }
 
+@media (max-width: 991px) {
+  .bottomSection {
+    width: 100%;
+    justify-content: center;
+    padding-right: 0;
+  }
+}
+
+
 .bottomSection ul {
   /* 왜 패딩 들어가있는지 모르겠음 */
   padding-left: 0;
+}
+
+.bottomSection li{
+  border-radius: 5px;
+}
+
+.bottomSection li:hover{
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .menuSection {
@@ -150,5 +206,10 @@ const themeIcon = computed(() => {
   list-style: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
+
+
+
+
 </style>

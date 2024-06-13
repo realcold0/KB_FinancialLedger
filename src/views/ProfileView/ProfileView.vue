@@ -49,25 +49,29 @@ const logout = () => {
 }
 
 onMounted(() => {
-    const userId = sessionStorage.getItem("id");
-    console.log(userId);
-    if(userId == "") {
-        alert("적합하지 않은경로");
-        router.push("/login");
+    if(!sessionStorage.getItem("id")){
+      alert("로그인을 먼저 해주세요");
+      router.push("/login");  
+    }else{
+      const userId = sessionStorage.getItem("id");
+      console.log(userId);
+
+      
+      axios.get(`http://localhost:3001/user?id=${userId}`)
+      .then(res => {
+          const userData = res.data[0];
+          console.log(userData);
+          data.name = userData.name;
+          data.userId = userData.userId;
+          data.email = userData.email;
+      })
+      .catch(e => {
+          alert("오류");
+          console.log(e);
+          router.push("/login");
+      })
     }
-    axios.get(`http://localhost:3001/user?id=${userId}`)
-    .then(res => {
-        const userData = res.data[0];
-        console.log(userData);
-        data.name = userData.name;
-        data.userId = userData.userId;
-        data.email = userData.email;
-    })
-    .catch(e => {
-        alert("오류");
-        console.log(e);
-        router.push("/login");
-    })
+    
 
 })
 
