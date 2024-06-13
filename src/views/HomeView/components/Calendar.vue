@@ -33,9 +33,9 @@ const error = ref(null);
 const fetchDashboardData = async () => {
 	try {
 		const id = sessionStorage.getItem('id');
-		const response = await axios.get(`http://localhost:3001/account?user_id=${id}`);
+		const response = await axios.get(`http://localhost:3001/account?id=${id}`);
 		const data = response.data;
-		const userDashboard = data.find(user => user.user_id == id);
+		const userDashboard = data.find(user => user.id == id);
 		if (userDashboard) {
 			dashboard.value = userDashboard;
 		} else {
