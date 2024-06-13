@@ -54,7 +54,7 @@ onMounted(() => {
         alert("적합하지 않은경로");
         router.push("/login");
     }
-    axios.get(http://localhost:3001/user?id=${userId})
+    axios.get(`http://localhost:3001/user?id=${userId}`)
     .then(res => {
         const userData = res.data[0];
         console.log(userData);
