@@ -20,7 +20,7 @@
                         <select name="class" id="" class="searchInput" v-model="searchCategory.class">
                         <option value="지출">지출</option>
                         <option value="수입">수입</option>
-                        <option value="" selected>전체</option>
+                        <option value="" selected>선택</option>
                     </select>
                     </div>
                     
@@ -32,7 +32,7 @@
                         <option value="교통">교통</option>
                         <option value="생활">생활</option>  
                         <option value="쇼핑/뷰티">쇼핑/뷰티</option>  
-                        <option value="" selected>전체</option>
+                        <option value="" selected>선택</option>
                     </select>
                 </div>
 
@@ -41,7 +41,7 @@
                     <select name="payment" id="payment" class="searchInput" v-model="searchCategory.payment">
                         <option value="현금">현금</option>
                         <option value="카드">카드</option>
-                        <option value="" selected>전체</option>
+                        <option value="" selected>선택</option>
                     </select>
                 </div>
 
@@ -62,7 +62,6 @@ import ExpenseList from "./ExpenseList.vue";
     export default {
         setup() {
             const current = ref(new Date());
-            
             const searchCategory = reactive({"class" : "", "category" : "", "payment" : ""});
 
             const search = ref({
@@ -134,7 +133,6 @@ import ExpenseList from "./ExpenseList.vue";
         line-height: normal;
         background-color: rgba(0, 0, 0, 0);
         border: none;
-        cursor: pointer;
     }
     
     option{

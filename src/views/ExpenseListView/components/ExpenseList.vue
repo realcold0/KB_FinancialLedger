@@ -30,7 +30,7 @@
                                                 <div class="div-21">{{ item_detail.memo }}</div>
                                                 <div class="div-21">{{ item_detail.payment }}</div>
                                             </div>
-                                        <div class="div-22">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount }}원</div>
+                                        <div class="div-22">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount.toLocaleString('ko-KR') }}원</div>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
             required : true
         }
     });
-    // acoount 테이블 갱신 메소드
+
     const updateAccount = (list) => {
         let income = 0;
         let expense = 0;
@@ -87,8 +87,10 @@
             console.log(e);
             });
         };
-  // 날짜를 키로 잡아서 다시 그룹화 후, 날짜를 기준으로 최신순 정렬하는 메소드
-    const groupByDate = (list) => {
+
+
+          // 날짜를 키로 잡아서 다시 그룹화 후, 날짜를 기준으로 최신순 정렬하는 메소드
+            const groupByDate = (list) => {
                 const grouped = list.reduce((acc, item) => {
                     const date = item.date;
                     if (!acc[date]) {
@@ -111,7 +113,6 @@
                 };
 
 
-
     const getList = async() => { 
         await axios.get(`http://localhost:3001/transactionDetail?user_id=${userId}`)
         .then(res => {
@@ -124,7 +125,6 @@
 
             updateAccount(data.list);
             
-
         })
         .catch(e => {
             console.log(e);
@@ -132,8 +132,11 @@
         });
     }
 
-    // 부모 컴포넌트로부터 받아온 조건을 필터링
-    const filterList = () => {
+    onMounted(() => {
+        getList();
+    })
+            // 부모 컴포넌트로부터 받아온 조건을 필터링
+            const filterList = () => {
                 const search = props.search;
                 const filteredList = data.list.filter(item => {
                     const date = item.date.split('-');
@@ -156,13 +159,8 @@
                 data.totalCnt = filteredList.length;
             };
 
-    // props 변경 사항 추적하여 적용
-    watch(() => props.search, filterList, { deep: true });
-
-    onMounted(() => {
-        getList();
-    })
-
+            // props 변경 사항 추적하여 적용
+            watch(() => props.search, filterList, { deep: true });
 
   </script>
 
