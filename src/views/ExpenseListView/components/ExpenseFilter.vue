@@ -133,6 +133,7 @@ import ExpenseList from "./ExpenseList.vue";
         line-height: normal;
         background-color: rgba(0, 0, 0, 0);
         border: none;
+        cursor: pointer;
     }
     
     option{

@@ -309,7 +309,7 @@
       white-space: initial;
     }
   }
-  .div-20 {
+  .category_traffic {
     border-radius: 11px;
     background-color: #9fd7ff;
     text-align: center;
@@ -318,11 +318,56 @@
     font: medium Inter, sans-serif;
   }
   @media (max-width: 991px) {
-    .div-20 {
+    .category_traffic {
       white-space: initial;
       padding: 0 20px;
     }
   }
+  .category_shopping {
+    border-radius: 11px;
+    background-color: #f9f59e;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .category_shopping {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
+  .category_life {
+    border-radius: 11px;
+    background-color: #99ff89;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .category_life {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
+  .category_food {
+    border-radius: 11px;
+    background-color: #ffade3;
+    text-align: center;
+    justify-content: center;
+    padding: 6px 26px;
+    font: medium Inter, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .category_food {
+      white-space: initial;
+      padding: 0 20px;
+    }
+  }
+
   .div-21 {
     margin: auto 0 0 10%;
     font: medium Inter, sans-serif;
