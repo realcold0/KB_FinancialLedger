@@ -86,7 +86,6 @@ onMounted(() => {
   }
 });
 </script>
-
 <style scoped>
 .navbar {
   background-color: #f7c873;
@@ -109,7 +108,7 @@ onMounted(() => {
 
 .topSection {
   display: flex;
-  width: 61%;
+  width: 59%;
   justify-content: space-between;
 }
 
