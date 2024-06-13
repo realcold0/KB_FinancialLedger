@@ -23,22 +23,20 @@ import Login from './components/Login.vue';
     text-align: center;
     -webkit-text-stroke-width: 1;
     -webkit-text-stroke-color: #000;
-    border-color: rgba(0, 0, 0, 1);
-    border-style: solid;
-    border-width: 1px;
     justify-content: center;
     align-items: center;
     border-radius: 14px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    background-color: #fffefd;
+    background-color: #FAEBCD;
     z-index: 10;
     margin-top: -19px;
     width: 586px;
+    height: 40px;
     max-width: 100%;
     color: #434343;
     white-space: nowrap;
     padding: 12px 47px;
-    font: 400 48px Actor, sans-serif;
+    font: 400 35px Actor, sans-serif;
   }
   @media (max-width: 991px) {
     .div-9 {
