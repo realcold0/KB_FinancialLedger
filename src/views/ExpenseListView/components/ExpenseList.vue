@@ -15,20 +15,20 @@
             <div class="list">
                 <ul>
                     <li class="list-item-day" v-for="item_day in data.groupedList">
-                        <div style="justify-content: space-between; display: flex;">
+                        <div class="item-sub">
                             <div class="date">
                                 {{ parseInt(item_day[0].date.split("-")[1]) + "월 " + parseInt(item_day[0].date.split("-")[2]) + "일"}}
                             </div>
-                            <ExpenseListItemAmount :data="item_day"/>
+                              <ExpenseListItemAmount :data="item_day"/>
                         </div> 
                         <li class="list-item-day-detail" v-for="item_detail in item_day">
                             <div class="div-17">
                                 <div class="div-18">
                                     <div class="div-19">
                                         <div :class="categoryClass(item_detail.category)">{{ item_detail.category }}</div>
-                                            <div style="display: flex;">
+                                            <div class="div-22">
                                                 <div class="div-21">{{ item_detail.memo }}</div>
-                                                <div class="div-21">{{ item_detail.payment }}</div>
+                                                <div class="payment">{{ item_detail.payment }}</div>
                                             </div>
                                         <div class="div-22">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount.toLocaleString('ko-kr') }}원</div>
                                     </div>
@@ -189,6 +189,7 @@
 
   .list-item-day {
     list-style: none;
+    margin-bottom: 7%;
   }  
   @media (max-width: 991px) {
     .list-item-day {
@@ -202,9 +203,28 @@
   @media (max-width: 991px) {
     .list-item-day-detail {
       max-width: 100%;
+      width: 100%;
     }
   }
-
+  .item-sub{
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 991px) {
+    .item-sub {
+      max-width: 100%;
+      display: grid;
+    }
+  }
+  .list{
+    margin-top: 1%;
+    font-size: larger;
+  }
+  @media (max-width: 991px){
+    .list{
+      vertical-align: middle;
+    }
+  }
 
   .div {
     display: flex;
@@ -222,6 +242,7 @@
     width: 100%;
     max-width: 1064px;
     flex-direction: column;
+    
   }
   @media (max-width: 991px) {
     .div-2 {
@@ -245,6 +266,8 @@
       flex-wrap: wrap;
       padding-right: 20px;
       margin-top: 40px;
+      width: 95%;
+      display: grid;
     }
   }
   .div-4 {
@@ -252,12 +275,18 @@
     flex-direction: column;
     color: #434343;
   }
+  @media (max-width: 991px) {
+    .div-4 {
+      margin-left: 8%;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
   .div-5 {
     font: xx-large Inter, sans-serif;
   }
   .date {
-    margin-top: 23px;
-    font: large 500;
+    font: larger 900;
   }
   .div-7 {
     align-self: start;
@@ -268,26 +297,20 @@
   @media (max-width: 991px) {
     .div-7 {
       white-space: initial;
+      max-width: 100%;
+      width: 100%;
     }
   }
   .div-8 {
-    display: flex;
     gap: 9px;
-    font-size: 11px;
   }
   @media (max-width: 991px) {
     .div-8 {
       white-space: initial;
+      margin-left: 5%;
+      max-width: 100%;
+      width: 100%;
     }
-  }
-  .div-9 {
-    color: #6293ce;
-    font-family: Inter, sans-serif;
-    flex-grow: 1;
-  }
-  .div-10 {
-    color: #f66464;
-    font-family: Inter, sans-serif;
   }
   
   .div-17 {
@@ -300,7 +323,8 @@
   }
   @media (max-width: 991px) {
     .div-17 {
-      max-width: 100%;
+      max-width: 85%;
+      margin-right: 10%;
     }
   }
   .div-18 {
@@ -309,7 +333,7 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     width: 100%;
-    gap: 20px;
+    gap: 10%;
     white-space: nowrap;
     padding: 19px 11px;
     justify-content: space-between;
@@ -317,19 +341,25 @@
   @media (max-width: 991px) {
     .div-18 {
       max-width: 100%;
+      padding: 10px 10px;
       flex-wrap: wrap;
       white-space: initial;
+      justify-content: center;
+      
     }
   }
   .div-19 {
-    justify-content: start;
+    justify-content: space-between;
     margin-left: 5%;
+    margin-right: 5%;
     display: flex;
-    gap: 10%;
+    width: 100%;
   }
   @media (max-width: 991px) {
     .div-19 {
       white-space: initial;
+      width: 80%;
+      gap:10%;
     }
   }
 
@@ -338,13 +368,16 @@
     background-color: #ffd99f;
     text-align: center;
     justify-content: center;
+    align-items: center;
     padding: 6px 26px;
     font: medium Inter, sans-serif;
   }
   @media (max-width: 991px) {
     .div-20 {
-      white-space: initial;
-      padding: 0 20px;
+      font: small Inter, sans-serif;
+      width: 100px;
+      padding: 1% 2%;
+
     }
   }
 
@@ -360,8 +393,8 @@
   }
   @media (max-width: 991px) {
     .category_traffic {
-      white-space: initial;
-      padding: 0 20px;
+      padding: 1% 2%;
+      font: small Inter, sans-serif;
     }
   }
   .category_shopping {
@@ -375,7 +408,8 @@
   @media (max-width: 991px) {
     .category_shopping {
       white-space: initial;
-      padding: 0 20px;
+      padding: 1% 2%;
+      font: small Inter, sans-serif;
     }
   }
 
@@ -390,7 +424,8 @@
   @media (max-width: 991px) {
     .category_life {
       white-space: initial;
-      padding: 0 20px;
+      padding: 1% 2%;
+      font: small Inter, sans-serif;
     }
   }
 
@@ -405,23 +440,65 @@
   @media (max-width: 991px) {
     .category_food {
       white-space: initial;
-      padding: 0 20px;
+      padding: 1% 2%;
+      font: small Inter, sans-serif;
+    }
+  }
+  .payment{
+    margin: auto 0 0 10%;
+    font: medium Inter, sans-serif;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  @media (max-width: 991px) {
+    .payment {
+      max-width: 100%;
+      width: 100%;
+      font: x-small Inter, sans-serif;
+      font-weight: 600;
+      margin-right: 0%;
+      overflow: hidden;
+      height: 25px;
     }
   }
 
   .div-21 {
     margin: auto 0 0 10%;
     font: medium Inter, sans-serif;
+    width: 100%;
+    display: end;
+  }
+  @media (max-width: 991px) {
+    .div-21 {
+      max-width: 100%;
+      width: 100%;
+      font: xx-small Inter, sans-serif;
+      font-weight: 900;
+      margin-right: 0%;
+      overflow: hidden;
+      height: 25px;
+    }
   }
 
   .div-22 {
-    flex-grow: 1;
-    margin: auto 0 0 10%;
+    margin: auto;
     font: medium Inter, sans-serif;
+    display: flex;
+    font-weight: 900;
+    color: #434343;
+    width: 50%;
+    justify-content: end;
   }
   @media (max-width: 991px) {
     .div-22 {
       max-width: 100%;
+      width: 100%;
+      justify-content: end;
+      gap: 30%;
+      font: small Inter, sans-serif;
+      font-weight: 700;
+      color: #434343;
     }
   }
   .div-23 {
