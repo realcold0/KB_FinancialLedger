@@ -39,14 +39,13 @@ onMounted(() => {
     .div-11 {
     align-self: end;
     display: flex;
-    margin-top: 28px;
     gap: 9px;
     font-size: medium;
     color: #434343;
   }
   @media (max-width: 991px) {
     .div-11 {
-      white-space: initial;
+      margin-top: 3%;
     }
   }
   .div-12 {

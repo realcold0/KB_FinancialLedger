@@ -1,10 +1,8 @@
 <template>
-    <div>
         <div class="div-8">
-              <div class="div-9">총 수입:{{ " " + totalAmount.totalIncome.toLocaleString('ko-KR')}}원</div>|
-              <div class="div-10">총 지출:{{" " + totalAmount.totalExpense.toLocaleString('ko-KR')}}원</div>
+            <div class="div-9">총 수입:{{ " " + totalAmount.totalIncome.toLocaleString('ko-KR')}}원</div>
+            <div class="div-10">총 지출:{{" " + totalAmount.totalExpense.toLocaleString('ko-KR')}}원</div>
         </div>
-    </div>
 </template>
 
 
@@ -45,7 +43,9 @@ onMounted(() => {
   }
   @media (max-width: 991px) {
     .div-8 {
-      white-space: initial;
+      margin-left: 5%;
+      width: 90%;
+      display: grid;
     }
   }
   .div-9 {
