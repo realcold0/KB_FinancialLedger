@@ -11,7 +11,7 @@
     </div>
 
     <div class="PWdiv">
-      <div class="PWLabel">PW:</div>
+      <div class="PWLabel">PW :</div>
       <input
         v-model="data.pw"
         class="PWInput"
@@ -76,6 +76,12 @@ const checkId = () => {
   padding: 69px 48px 40px;
 }
 @media (max-width: 991px) {
+  .container {
+    width: 500px;
+  }
+}
+
+@media (max-width: 991px) {
   .div-10 {
     margin-top: 40px;
     padding: 0 20px;
@@ -96,7 +102,7 @@ const checkId = () => {
   -webkit-text-stroke-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);
   border-style: solid;
-  width: 25%;
+  width: 15%;
   text-align: start;
   font: 36px Inter, sans-serif;
   padding-left: 10%;
@@ -112,15 +118,16 @@ const checkId = () => {
   width: fit-content;
   padding: 2%;
   font: 23px Inter, sans-serif;
-  margin-left: -13%;
-  margin-right: 10%;
-  margin-top: -5px;
   color: black;
 }
 @media (max-width: 991px) {
+  .IDLabel {
+    font-size: 30px;
+  }
   .IDInput {
     max-width: 100%;
-    padding-right: 20px;
+    padding: 1px 10px;
+    margin-top: 0px;
   }
 }
 .PWdiv {
@@ -139,8 +146,9 @@ const checkId = () => {
   -webkit-text-stroke-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);
   border-style: solid;
-  width: 25%;
   text-align: start;
+  width: 15%;
+
   font: 36px Inter, sans-serif;
   padding-left: 10%;
 }
@@ -156,14 +164,19 @@ const checkId = () => {
   width: fit-content;
   padding: 2%;
   font: 23px Inter, sans-serif;
-  margin-left: -13%;
-  margin-right: 10%;
-  margin-top: -5px;
 }
 @media (max-width: 991px) {
+  .PWLabel {
+    font-size: 30px;
+    width: 14%;
+
+  }
   .PWInput {
     max-width: 100%;
-    padding-right: 20px;
+    padding: 1px 10px;
+    margin-top: 0px;
+    margin-left: 5px;
+
   }
 }
 .BTNdiv {
@@ -178,9 +191,9 @@ const checkId = () => {
 }
 @media (max-width: 991px) {
   .BTNdiv {
-    flex-wrap: wrap;
     margin-top: 40px;
     white-space: initial;
+    justify-content: space-between;
   }
 }
 .loginBTN {
@@ -202,7 +215,8 @@ const checkId = () => {
 @media (max-width: 991px) {
   .loginBTN {
     white-space: initial;
-    padding: 0 24px;
+    padding: 0 15px;
+    width: 150px;
   }
 }
 .loginBTN:hover {
@@ -228,7 +242,9 @@ const checkId = () => {
 @media (max-width: 991px) {
   .JoinBTN {
     white-space: initial;
-    padding: 0 20px;
+    padding: 0 15px;
+    width: 150px;
+
   }
 }
 .JoinBTN:hover {
