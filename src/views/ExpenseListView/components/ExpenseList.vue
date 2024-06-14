@@ -30,7 +30,7 @@
                                                 <div class="div-21">{{ item_detail.memo }}</div>
                                                 <div class="payment">{{ item_detail.payment }}</div>
                                             </div>
-                                        <div class="div-22">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount.toLocaleString('ko-kr') }}원</div>
+                                        <div :class="(item_detail.class === '지출') ? 'amount-expense' : 'amount-income' ">{{ (item_detail.class === "지출") ? "- " : "+ "}}  {{ item_detail.amount.toLocaleString('ko-kr') }}원</div>
                                     </div>
                                 </div>
                             </div>
@@ -395,6 +395,45 @@
       font: small Inter, sans-serif;
       font-weight: 700;
       color: #434343;
+    }
+  }
+  .amount-income {
+    margin: auto;
+    font: medium Inter, sans-serif;
+    display: flex;
+    font-weight: 900;
+    color: #6293CE;
+    width: 50%;
+    justify-content: end;
+  }
+  @media (max-width: 991px) {
+    .amount-income {
+      max-width: 100%;
+      width: 100%;
+      justify-content: end;
+      gap: 30%;
+      font: small Inter, sans-serif;
+      font-weight: 700;
+    }
+  }
+
+  .amount-expense {
+    margin: auto;
+    font: medium Inter, sans-serif;
+    display: flex;
+    font-weight: 900;
+    color: #F66464;
+    width: 50%;
+    justify-content: end;
+  }
+  @media (max-width: 991px) {
+    .amount-expense {
+      max-width: 100%;
+      width: 100%;
+      justify-content: end;
+      gap: 30%;
+      font: small Inter, sans-serif;
+      font-weight: 700;
     }
   }
   .div-23 {

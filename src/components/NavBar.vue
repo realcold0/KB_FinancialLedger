@@ -108,7 +108,7 @@ onMounted(() => {
 
 .topSection {
   display: flex;
-  width: 59%;
+  width: 61%;
   justify-content: space-between;
 }
 

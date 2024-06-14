@@ -22,21 +22,12 @@
               <option value="수입">수입</option>
             </select>
 
-            <!-- <select class="input" v-model="data.category">
-              <option value="생활">생활</option>
-              <option value="쇼핑/뷰티">쇼핑/뷰티</option>
-              <option value="교통">교통</option>
-              <option value="식비">식비</option>
-            </select> -->
-
             <select class="input" v-model="data.category">
               <option value="" disabled selected>선택하세요</option>
               <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
             </select>
 
-
-
-            <select class="input" v-model="data.payment" :disabled="data.class === '수입' ? true : false">
+            <select class="input" v-model="data.payment" :disabled="data.class === '수입'">
               <option value="" disabled selected>선택하세요</option>
               <option value="현금">현금</option>
               <option value="카드">카드</option>
@@ -73,7 +64,12 @@ export default {
         class: '',
         payment: '',
         date: ''
-
+      },
+      accountData: {
+        id: '',
+        total_income: 0,
+        total_expand: 0,
+        profit: 0
       },
       categories: ['생활', '쇼핑/뷰티', '교통', '식비'], // 기본 카테고리 목록
       incomeCategories: ['용돈', '월급'], // 수입일 때 카테고리 목록
@@ -104,44 +100,56 @@ export default {
         });
     },
     ...mapActions(useExpenseListStore, ['getList']),
-    confirm() {
+    async confirm() {
  
       // 필수 입력 항목 체크
       if (!this.data.date || !this.data.class || !this.data.category || !this.data.amount || !this.data.memo) {
         window.alert('모든 항목을 입력해주세요.');
         return;
       }
+
       // 데이터 준비
-      this.data.id = this.nextId;
       this.data.user_id = sessionStorage.getItem("id");
-      // Axios를 사용하여 데이터를 POST
-      axios.post('http://localhost:3001/transactionDetail', this.data)
-        .then(response => {
-          console.log('Data successfully posted:', response.data);
+
+      try {
+        // 트랜잭션 데이터 POST
+        await axios.post('http://localhost:3001/transactionDetail', this.data);
+        console.log('Data successfully posted');
+
+        // 계정 데이터 가져오기
+        await this.fetchAccountData();
+
+        // 수입/지출에 따라 계정 데이터 업데이트
+        if (this.data.class === '수입') {
+          this.accountData.total_income += parseInt(this.data.amount);
+        } else {
+          this.accountData.total_expand += parseInt(this.data.amount);
+        }
+        this.accountData.profit = this.accountData.total_income - this.accountData.total_expand;
+
+        // 계정 데이터 PUT
+        await axios.put(`http://localhost:3001/account/${this.data.user_id}`, this.accountData);
+        console.log('Account successfully updated');
+
           // router.go(0);
           this.getList();
           if(this.$route.query.page == "expenses"){
             this.getList();
           }
-          this.$emit("close"); // 모달 닫기
-        })
-        .catch(error => {
-          console.error('Error posting data:', error);
-        });
+        this.$emit("close"); // 모달 닫기
+      } catch (error) {
+        console.error('Error processing transaction:', error);
+      }
     },
     cancel() {
-      // 취소 버튼 클릭 시 처리할 로직을 추가할 수 있습니다.
       console.log('취소 버튼 클릭');
       this.$emit("close"); // 모달 닫기
     }
-  },
-  
-
+  }
 };
 </script>
+
 <style scoped>
-
-
 .div {
   position: fixed;
   bottom: 20px;
@@ -166,15 +174,15 @@ export default {
 @media (max-width: 991px) {
   .div {
     position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #f8f8f8;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  font-size: 12px;
-  z-index: 1000;
-  margin-right: 10%;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f8f8f8;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    z-index: 1000;
+    margin-right: 10%;
   }
 }
 
@@ -193,14 +201,14 @@ export default {
 @media (max-width: 991px) {
   .div-2 {
     border-radius: 30px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background-color: #f8f8f8;
-  display: flex;
-  width: 284px;
-  max-width: 100%;
-  padding-bottom: 6px;
-  flex-direction: column;
-  align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: #f8f8f8;
+    display: flex;
+    width: 284px;
+    max-width: 100%;
+    padding-bottom: 6px;
+    flex-direction: column;
+    align-items: center;
   }
 }
 

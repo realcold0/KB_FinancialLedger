@@ -67,7 +67,7 @@ const fetchTransactionHistory = async () => {
         if (!id) throw new Error('로그인이 필요합니다');
 
         const { data: transactions } = await axios.get(`http://localhost:3001/transactionDetail?user_id=${id}`);
-        if (transactions.length === 0) throw new Error('해당 아이디의 트랜잭션 데이터가 없습니다');
+        if (transactions.length === 0) throw new Error('오른쪽 아래 + 버튼을 눌러 시작해보세요!');
 
         const colorMap = { '수입': '#0000FF', '지출': '#E47069' };
         const events = transactions.map(transaction => ({
