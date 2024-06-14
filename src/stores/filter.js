@@ -16,9 +16,6 @@ export const useFilterStore = defineStore('filter', ()=>{
     });
 
     function test(searchCategory){
-        search.value.date.year = current.value.getFullYear().toString();
-        search.value.date.month = (current.value.getMonth()+1).toString().padStart(2,"0");
-        search.value.date.date = current.value.getDate().toString().padStart(2, "0");
         search.value.class = searchCategory.class;
         search.value.category = searchCategory.category;
         search.value.payment = searchCategory.payment;
