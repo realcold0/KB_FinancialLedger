@@ -41,7 +41,7 @@ const data = reactive({"userId" : "", "userPw" : "", "name" : "", "email" : ""})
 const checkPw = ref("");
 const isPwChecked = ref(false);
 const isIdChecked = ref(false);
-const id = ref("");
+
 const router = useRouter();
 
 const pwChecker = ref("비밀번호가 일치하지 않습니다.");
@@ -69,23 +69,12 @@ const idCheck = () => {
     })
 }
 
-const getUserList = async () => {
-  try {
-    const res = await axios.get('http://localhost:3001/user');
-    id.value = (parseInt(res.data[res.data.length - 1].id) + 1).toString();
-  } catch (e) {
-    console.log(e);
-    alert("회원가입 실패");
-  }
-}
-
-
 const createAccount = () => {
   const sendData = {
         "total_income" : 0,
         "total_expand" : 0,
         "profit" : 0,
-        "id" : id.value
+        "id" : data.userId
     };
 
     axios.post(`http://localhost:3001/account`, sendData)
@@ -98,15 +87,13 @@ const createAccount = () => {
 
 }
 
-const signUp = async () => {
+const signUp = () => {
     
     if(!isIdChecked.value || !isPwChecked.value) {
         alert("중복확인 및 비밀 번호를 확인해주세요.");
         return;
     }
-    await getUserList();
     const sendData = {
-        "id" : id.value,
         "name" : data.name,
         "email" : data.email,
         "userId" : data.userId,
