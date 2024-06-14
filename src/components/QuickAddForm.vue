@@ -47,10 +47,10 @@
 
 
 <script>
-  import axios from 'axios';
-  import router from '@/router'; 
-  import { useExpenseListStore } from '@/stores/expenseList';
-  import { mapActions } from 'pinia'
+import axios from 'axios';
+import router from '@/router';
+import { useExpenseListStore } from '@/stores/expenseList';
+import { mapActions } from 'pinia'
 export default {
   name: "QuickAddForm",
   data() {
@@ -74,7 +74,7 @@ export default {
       categories: ['생활', '쇼핑/뷰티', '교통', '식비'], // 기본 카테고리 목록
       incomeCategories: ['용돈', '월급'], // 수입일 때 카테고리 목록
       paymentMethods: ['현금', '카드'], // 결제 수단 목록
-      
+
 
     };
   },
@@ -99,9 +99,18 @@ export default {
           console.error('Error fetching data:', error);
         });
     },
+    async fetchAccountData() {
+      try {
+        const userId = sessionStorage.getItem("id");
+        const response = await axios.get(`http://localhost:3001/account/${userId}`);
+        this.accountData = response.data;
+      } catch (error) {
+        console.error('Error fetching account data:', error);
+      }
+    },
     ...mapActions(useExpenseListStore, ['getList']),
     async confirm() {
- 
+
       // 필수 입력 항목 체크
       if (!this.data.date || !this.data.class || !this.data.category || !this.data.amount || !this.data.memo) {
         window.alert('모든 항목을 입력해주세요.');
@@ -131,11 +140,20 @@ export default {
         await axios.put(`http://localhost:3001/account/${this.data.user_id}`, this.accountData);
         console.log('Account successfully updated');
 
-          // router.go(0);
+        // router.go(0);
+        this.getList();
+        if (this.$route.query.page == "expenses") {
           this.getList();
-          if(this.$route.query.page == "expenses"){
+        }
+
+        if (router.currentRoute.value.path === '/') {
+          router.go(0);
+        } else {
+          this.getList();
+          if (this.$route.query.page == "expenses") {
             this.getList();
           }
+        }
         this.$emit("close"); // 모달 닫기
       } catch (error) {
         console.error('Error processing transaction:', error);
