@@ -54,10 +54,12 @@
   </div>
 </template>
 
+
 <script>
-import axios from 'axios';
-
-
+  import axios from 'axios';
+  import router from '@/router'; 
+  import { useExpenseListStore } from '@/stores/expenseList';
+  import { mapActions } from 'pinia'
 export default {
   name: "QuickAddForm",
   data() {
@@ -75,7 +77,9 @@ export default {
       },
       categories: ['생활', '쇼핑/뷰티', '교통', '식비'], // 기본 카테고리 목록
       incomeCategories: ['용돈', '월급'], // 수입일 때 카테고리 목록
-      paymentMethods: ['현금', '카드'] // 결제 수단 목록
+      paymentMethods: ['현금', '카드'], // 결제 수단 목록
+      
+
     };
   },
   methods: {
@@ -99,7 +103,9 @@ export default {
           console.error('Error fetching data:', error);
         });
     },
+    ...mapActions(useExpenseListStore, ['getList']),
     confirm() {
+ 
       // 필수 입력 항목 체크
       if (!this.data.date || !this.data.class || !this.data.category || !this.data.amount || !this.data.memo) {
         window.alert('모든 항목을 입력해주세요.');
@@ -112,6 +118,11 @@ export default {
       axios.post('http://localhost:3001/transactionDetail', this.data)
         .then(response => {
           console.log('Data successfully posted:', response.data);
+          // router.go(0);
+          this.getList();
+          if(this.$route.query.page == "expenses"){
+            this.getList();
+          }
           this.$emit("close"); // 모달 닫기
         })
         .catch(error => {

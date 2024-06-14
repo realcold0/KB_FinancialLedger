@@ -3,7 +3,7 @@
       <div class="div-2">
         <div class="div-3">
             <div class="div-4">
-                <div class="div-5">전체 내역 {{ data.totalCnt }}건</div>
+                <div class="div-5">전체 내역 {{ expenseList.data.totalCnt }}건</div>
             </div>
             
             <div class="div-7">
@@ -14,7 +14,7 @@
         </div>
             <div class="list">
                 <ul>
-                    <li class="list-item-day" v-for="item_day in data.groupedList">
+                    <li class="list-item-day" v-for="item_day in expenseList.data.groupedList">
                         <div class="item-sub">
                             <div class="date">
                                 {{ parseInt(item_day[0].date.split("-")[1]) + "월 " + parseInt(item_day[0].date.split("-")[2]) + "일"}}
@@ -48,16 +48,14 @@
     import TotalAmount from '@/components/TotalAmount.vue';
     import axios from 'axios';
     import ExpenseListItemAmount from './ExpenseListItemAmount.vue';
-    const data = reactive({list : "", totalCnt : "", groupedList : ""});
-    let accountId = "";
-    const userId = sessionStorage.getItem("id");
+    import { useFilterStore } from "@/stores/filter"; //filter 선택한 조건 
+    import { useExpenseListStore } from '@/stores/expenseList';
+    const filter = useFilterStore(); //reactive 로 변환
+    const expenseList = useExpenseListStore();
 
-    const props = defineProps({
-        search : {
-            type : Object,
-            required : true
-        }
-    });
+    const data = reactive({list : [], totalCnt : "", groupedList : ""});
+    const userId = sessionStorage.getItem("id");
+    
 
     const categoryClass = (category) => {
       if (category === '식비') {
@@ -74,111 +72,9 @@
       }
     };
 
-    const updateAccount = (list) => {
-      let income = 0;
-      let expense = 0;
-      let profit = 0; 
-
-      list.forEach(e => {
-          if (e.class === "수입") {
-              income += e.amount;
-          } else if (e.class === "지출") {
-              expense += e.amount;
-          }
-      });
-
-      profit = income - expense;
-
-      const accountData = {
-          total_income: income,
-          total_expand: expense,
-          profit: profit,
-          id: userId
-      };
-
-      axios.put(`http://localhost:3001/account/${userId}`, accountData)
-          .then(res => {
-              console.log(res.data);
-          })
-          .catch(e => {
-              console.log(e);
-          });
-    };
-
-  
-    // 날짜를 키로 잡아서 다시 그룹화 후, 날짜를 기준으로 최신순 정렬하는 메소드
-    const groupByDate = (list) => {
-                const grouped = list.reduce((acc, item) => {
-                    const date = item.date;
-                    if (!acc[date]) {
-                        acc[date] = [];
-                    }
-                    acc[date].push(item);
-                    return acc;
-                    }, {});
-
-                    // 객체의 키를 배열로 변환하여 정렬
-                    const sortedKeys = Object.keys(grouped).sort((a, b) => new Date(b) - new Date(a));
-
-                    // 정렬된 키를 기준으로 새로운 객체 생성
-                    const sortedGrouped = sortedKeys.reduce((acc, key) => {
-                        acc[key] = grouped[key].slice().reverse();
-                        return acc;
-                    }, {});
-
-                    return sortedGrouped;
-    };
-
-
-    const getList = async() => { 
-        await axios.get(`http://localhost:3001/transactionDetail?user_id=${userId}`)
-        .then(res => {
-            data.list = res.data;
-
-            data.groupedList = groupByDate(data.list);
-
-            console.log(data.groupedList);
-            data.totalCnt = res.data.length;
-
-            updateAccount(data.list);
-            
-        })
-        .catch(e => {
-            console.log(e);
-            alert("오류");
-        });
-    }
-
-    onMounted(() => {
-        getList();
-    })
-    
-    // 부모 컴포넌트로부터 받아온 조건을 필터링
-    const filterList = () => {
-                const search = props.search;
-                const filteredList = data.list.filter(item => {
-                    const date = item.date.split('-');
-                    
-                    const yearCondition = !search.date.year || date[0] === search.date.year;
-                    const monthCondition = !search.date.month || date[1] === search.date.month;
-                    const dayCondition = !search.date.date || date[2] === search.date.date;
-                    const dateCondition = yearCondition && monthCondition && dayCondition;
-
-                    const classCondition = !search.class || item.class === search.class;
-                    const categoryCondition = !search.category || item.category === search.category;
-                    const paymentCondition = !search.payment || item.payment === search.payment;
-
-                return dateCondition && classCondition && categoryCondition && paymentCondition;
-                })
-
-                console.log(filteredList);
-
-                data.groupedList = groupByDate(filteredList);
-                data.totalCnt = filteredList.length;
-    };
-
+    onMounted(()=> expenseList.getList());
     // props 변경 사항 추적하여 적용
-    watch(() => props.search, filterList, { deep: true });
+    watch(() => filter.search, expenseList.filterList, { deep: true });
 
   </script>
 

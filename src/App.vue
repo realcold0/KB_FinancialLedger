@@ -15,6 +15,10 @@ const setTheme = () => {
   }
 };
 
+const addToList = () =>{
+
+}
+
 // 컴포넌트가 로드될 때 테마를 설정
 onMounted(() => {
   setTheme();
@@ -24,7 +28,7 @@ onMounted(() => {
 <template>
   <NavBar></NavBar>
   <RouterView />
-  <QuickAddButton />
+  <QuickAddButton :addExpense="addToList" />
 </template>
 
 <style>

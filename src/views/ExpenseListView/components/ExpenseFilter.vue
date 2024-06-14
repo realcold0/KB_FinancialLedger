@@ -7,7 +7,7 @@
                     <label for="date">일자</label> <br>
                     <!-- <button @click="test" id="date">{{ search.date.year }}-{{ search.date.month }}-{{ search.date.date }}</button> -->
                     <!-- <input type="date" name="" id=""> -->
-                    <VDatePicker id="date" v-model="current" >
+                    <VDatePicker id="date" v-model="filter.current" >
                         <template #default="{ inputValue, inputEvents }">
                             <input :value="inputValue" v-on="inputEvents" class="searchInput"/>
                         </template>
@@ -45,47 +45,33 @@
                     </select>
                 </div>
 
-                <button class="searchButton"  @click="test"><img src="@/assets/img/search.png" alt="" ></button>
+                <button class="searchButton"  @click="filter.test"><img src="@/assets/img/search.png" alt="" ></button>
             </div>
             
 
         </div>
-        <ExpenseList :search="search"></ExpenseList>  
+        <ExpenseList></ExpenseList>  
     </div>
 </template>
 
 <script>
-    import { ref,reactive } from "vue";
-import ExpenseList from "./ExpenseList.vue";
+    import { ref,reactive, watch } from "vue";
+    import ExpenseList from "./ExpenseList.vue";
     import 'v-calendar/style.css';
+    import { useFilterStore } from "@/stores/filter";
+
+
 
     export default {
         setup() {
-            const current = ref(new Date());
             const searchCategory = reactive({"class" : "", "category" : "", "payment" : ""});
+            const filter = useFilterStore();
 
-            const search = ref({
-                date : {
-                    year : current.value.getFullYear().toString(), 
-                    month: (current.value.getMonth()+1).toString().padStart(2,"0"), 
-                    date : current.value.getDate().toString().padStart(2, "0") 
-                },
-                class : "", //분류 - 수입 지출
-                category: "", //식비, 교통
-                payment : "", //결제 수단
-            });
 
-            function test(){
-                search.value.date.year = current.value.getFullYear().toString();
-                search.value.date.month = (current.value.getMonth()+1).toString().padStart(2,"0");
-                search.value.date.date = current.value.getDate().toString().padStart(2, "0");
-                search.value.class = searchCategory.class;
-                search.value.category = searchCategory.category;
-                search.value.payment = searchCategory.payment;
-                
-                console.log(search.value);
-            }
-            return {current, search, test, searchCategory};
+            watch(searchCategory, (newCategory) => {
+                filter.test(newCategory);
+            })
+            return {filter, searchCategory};
         },
         components : {
             ExpenseList,
