@@ -78,6 +78,8 @@ const checkId = () => {
 @media (max-width: 991px) {
   .container {
     width: 500px;
+    padding: 69px 0px;
+
   }
 }
 
@@ -122,12 +124,13 @@ const checkId = () => {
 }
 @media (max-width: 991px) {
   .IDLabel {
-    font-size: 30px;
+    font-size: 25px;
   }
   .IDInput {
     max-width: 100%;
     padding: 1px 10px;
     margin-top: 0px;
+    margin-right: 5px;
   }
 }
 .PWdiv {
@@ -167,16 +170,17 @@ const checkId = () => {
 }
 @media (max-width: 991px) {
   .PWLabel {
-    font-size: 30px;
+    font-size: 25px;
     width: 14%;
 
   }
   .PWInput {
-    max-width: 100%;
+    max-width: 80%;
+
     padding: 1px 10px;
     margin-top: 0px;
     margin-left: 5px;
-
+    margin-right: 5px;
   }
 }
 .BTNdiv {
