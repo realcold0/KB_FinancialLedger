@@ -14,6 +14,7 @@ const setTheme = () => {
   }
 };
 
+// 컴포넌트가 로드될 때 테마를 설정
 onMounted(() => {
   setTheme();
 });
