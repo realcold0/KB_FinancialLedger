@@ -87,6 +87,9 @@ onMounted(() => {
 });
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+
 .navbar {
   background-color: #f7c873;
   width: 100%;
@@ -94,6 +97,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: JUA, sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -156,6 +160,7 @@ onMounted(() => {
 
 .datesection .date-text {
   width: 100px;
+  font-family: JUA, sans-serif;
 }
 
 .datesection .monthManageButton {
@@ -173,7 +178,7 @@ onMounted(() => {
   color: #434343;
   font-family: Inter;
   font-size: 45px;
-  font-style: normal;
+  font-family: JUA, sans-serif;
   font-weight: 700;
   line-height: normal;
   text-align: center;
@@ -189,7 +194,7 @@ onMounted(() => {
   color: #434343;
   font-family: Inter;
   font-size: 25px;
-  font-style: normal;
+  font-family: JUA, sans-serif;
   font-weight: 400;
   line-height: normal;
   text-align: center;

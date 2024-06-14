@@ -40,6 +40,7 @@ onMounted(() => {
     display: flex;
     gap: 9px;
     font-size: large;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-8 {
@@ -50,11 +51,11 @@ onMounted(() => {
   }
   .div-9 {
     color: #6293ce;
-    font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
     flex-grow: 1;
   }
   .div-10 {
     color: #f66464;
-    font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   }
 </style>

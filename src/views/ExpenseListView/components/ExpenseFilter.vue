@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="all">
         <div class="filterWrapper">
             <div class="filter">
                 <div class="date">
@@ -87,6 +87,14 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.all {
+    font-family: JUA, sans-serif;
+}
+
+
+
     .filterWrapper {
         display: flex;
         flex-direction: column;

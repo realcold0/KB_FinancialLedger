@@ -37,7 +37,7 @@ import Login from './components/Login.vue';
     color: #434343;
     white-space: nowrap;
     padding: 12px 47px;
-    font: 400 35px Actor, sans-serif;
+    font: 400 35px JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-9 {

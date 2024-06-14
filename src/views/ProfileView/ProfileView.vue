@@ -83,6 +83,7 @@ onMounted(() => {
   padding-bottom: 73px;
   flex-direction: column;
   align-items: center;
+  font-family: JUA, sans-serif;
 }
 
 .sub {
@@ -100,7 +101,7 @@ onMounted(() => {
   color: #434343;
   white-space: nowrap;
   padding: 12px 47px;
-  font: 400 30px Actor, sans-serif;
+  font: 400 30px JUA, sans-serif;
   text-align: center;
   margin-top: -15px;
 }
@@ -216,7 +217,7 @@ onMounted(() => {
 }
 
 .div-14 {
-  font-family: Inter, sans-serif;
+  font-family: JUA, sans-serif;
   padding-left: 20%;
 }
 

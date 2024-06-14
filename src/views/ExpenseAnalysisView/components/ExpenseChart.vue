@@ -270,7 +270,7 @@ export default defineComponent({
   color: #000;
 }
 .total {
-  font: 400 20px Inter, sans-serif;
+  font: 400 20px JUA, sans-serif;
 }
 @media (max-width: 991px) {
   .total {
@@ -278,7 +278,7 @@ export default defineComponent({
   }
 }
 .totalValue {
-  font: 400 32px Inter, sans-serif;
+  font: 400 32px JUA, sans-serif;
   margin-top: 10px;
   margin-bottom: -5px;
 }
@@ -321,7 +321,7 @@ export default defineComponent({
   }
 }
 .div-10 {
-  font-family: Inter, sans-serif;
+  font-family: JUA, sans-serif;
   border-radius: 17px;
   background-color: #9fd7ff;
   justify-content: center;
@@ -336,13 +336,13 @@ export default defineComponent({
 }
 .div-11 {
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px JUA, sans-serif;
 }
 .div-12 {
   flex-grow: 1;
   flex-basis: auto;
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px JUA, sans-serif;
 }
 .div-13 {
   border-radius: 21px;
@@ -384,7 +384,7 @@ export default defineComponent({
   }
 }
 .div-16 {
-  font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   border-radius: 17px;
   background-color: #f9f59e;
   justify-content: center;
@@ -399,13 +399,13 @@ export default defineComponent({
 }
 .div-17 {
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px JUA, sans-serif;
 }
 .div-18 {
   flex-grow: 1;
   flex-basis: auto;
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px JUA, sans-serif;
 }
 .div-19 {
   border-radius: 21px;
@@ -446,7 +446,7 @@ export default defineComponent({
   }
 }
 .div-22 {
-  font-family: Inter, sans-serif;
+  font-family: JUA, sans-serif;
   border-radius: 17px;
   background-color: #99ff89;
   justify-content: center;
@@ -461,13 +461,13 @@ export default defineComponent({
 }
 .div-23 {
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px JUA, sans-serif;
 }
 .div-24 {
   flex-grow: 1;
   flex-basis: auto;
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px   JUA, sans-serif;
 }
 .div-25 {
   border-radius: 21px;
@@ -508,7 +508,7 @@ export default defineComponent({
   }
 }
 .div-28 {
-  font-family: Inter, sans-serif;
+  font-family: JUA, sans-serif;
   border-radius: 17px;
   background-color: #ffade3;
   justify-content: center;
@@ -523,12 +523,12 @@ export default defineComponent({
 }
 .div-29 {
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px  JUA, sans-serif;
 }
 .div-30 {
   flex-grow: 1;
   flex-basis: auto;
   margin: auto 0;
-  font: 300 20px Inter, sans-serif;
+  font: 300 20px JUA, sans-serif;
 }
 </style>
