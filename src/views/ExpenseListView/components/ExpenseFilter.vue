@@ -28,17 +28,14 @@
                 <div class="category">
                     <label for="category">카테고리</label> <br>
                     <select name="category" id="category" class="searchInput" v-model="searchCategory.category">
-                        <option value="식비">식비</option>
-                        <option value="교통">교통</option>
-                        <option value="생활">생활</option>  
-                        <option value="쇼핑/뷰티">쇼핑/뷰티</option>  
-                        <option value="" selected>선택</option>
+                        <option value="" selected>전체</option>
+                        <option v-for="option in filteredOptions" :key="option" :value="option">{{ option }}</option>
                     </select>
                 </div>
 
                 <div class="payment">
                     <label for="payment">결제 수단</label> <br>
-                    <select name="payment" id="payment" class="searchInput" v-model="searchCategory.payment">
+                    <select :disabled="searchCategory.class !== '지출'" name="payment" id="payment" class="searchInput" v-model="searchCategory.payment">
                         <option value="현금">현금</option>
                         <option value="카드">카드</option>
                         <option value="" selected>선택</option>
@@ -55,7 +52,7 @@
 </template>
 
 <script>
-    import { ref,reactive, watch } from "vue";
+    import { ref,reactive, watch, computed } from "vue";
     import ExpenseList from "./ExpenseList.vue";
     import 'v-calendar/style.css';
     import { useFilterStore } from "@/stores/filter";
@@ -66,12 +63,20 @@
         setup() {
             const searchCategory = reactive({"class" : "", "category" : "", "payment" : ""});
             const filter = useFilterStore();
+            const options = {
+                지출: ["식비", "교통", "생활", "쇼핑/뷰티"],
+                수입: ["용돈", "월급"],
+                전체: []
+            };
 
+            const filteredOptions = computed(() => {
+                return searchCategory.class ? options[searchCategory.class] : [];
+            });
 
             watch(searchCategory, (newCategory) => {
                 filter.test(newCategory);
             })
-            return {filter, searchCategory};
+            return {filter, searchCategory,filteredOptions};
         },
         components : {
             ExpenseList,
