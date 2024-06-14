@@ -2,7 +2,18 @@
   <div class="dive-10">
     <div class="input-form">
       <div class="input-name" >아이디</div>
-      <input class="input-area" v-model="data.userId" />
+      <input 
+        :class="isIdChecked ? 'input-area2' : 'input-area-check'" 
+        v-model="data.userId" 
+        style="
+            margin: 0px 0px 0px 0px;
+            width: 26%;
+            @media(max-width: 991px;) {
+              margin-left: 10%;
+              margin: 0px 0px 0px 10%;
+            }
+          "
+      />
       <button @click="idCheck" type="submit" class="check-btn">
         중복 확인
       </button>
@@ -68,6 +79,10 @@ watch([() => data.userPw, checkPw], () => {
 });
 
 const idCheck = () => {
+  if(!data.userId) {
+    alert("아이디를 입력해주십시오.");
+    return;
+  }
   axios
     .get(`http://localhost:3001/user?userId=${data.userId}`)
     .then((res) => {
@@ -176,7 +191,7 @@ const signUp = async () => {
     background-color: #faebcd;
     display: flex;
     margin-top: 23px;
-    width: 95%;
+    width: 90%;
     max-width: 100%;
     flex-direction: column;
     font-weight: 500;
@@ -323,7 +338,7 @@ const signUp = async () => {
     color: #434343;
   margin-right: -15%;
   margin-left: 0%;
-  font-size: 18px;
+  font-size: 15px;
   width: 25%;
   text-align: center;
   }
