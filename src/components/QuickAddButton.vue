@@ -29,11 +29,6 @@ export default {
 <style scoped>
 .container {
   position: relative;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1000; /* Ensure the button is above other content */
 }
 
