@@ -82,7 +82,7 @@
   
   
   <style scoped>
-
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
   .list-item-day {
     list-style: none;
     margin-bottom: 7%;
@@ -128,6 +128,7 @@
     flex-direction: column;
     z-index: auto;
     position: relative;
+    font-family: JUA, sans-serif;
   }
 
 
@@ -138,6 +139,7 @@
     width: 100%;
     max-width: 1064px;
     flex-direction: column;
+    font-family: JUA, sans-serif;
     
   }
   @media (max-width: 991px) {
@@ -179,10 +181,10 @@
     }
   }
   .div-5 {
-    font: xx-large Inter, sans-serif;
+    font: xx-large JUA, sans-serif;
   }
   .date {
-    font: larger 900;
+    font: larger JUA, sans-serif;
   }
   .div-7 {
     align-self: start;
@@ -250,6 +252,7 @@
     margin-right: 5%;
     display: flex;
     width: 100%;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-19 {
@@ -266,7 +269,7 @@
     justify-content: center;
     align-items: center;
     padding: 6px 26px;
-    font: medium Inter, sans-serif;
+    font: medium JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-20 {
@@ -285,7 +288,7 @@
     text-align: center;
     justify-content: center;
     padding: 6px 26px;
-    font: medium Inter, sans-serif;
+    font: medium JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .category_traffic {
@@ -299,7 +302,7 @@
     text-align: center;
     justify-content: center;
     padding: 6px 26px;
-    font: medium Inter, sans-serif;
+    font: medium JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .category_shopping {
@@ -315,7 +318,7 @@
     text-align: center;
     justify-content: center;
     padding: 6px 26px;
-    font: medium Inter, sans-serif;
+    font: medium JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .category_life {
@@ -331,7 +334,7 @@
     text-align: center;
     justify-content: center;
     padding: 6px 26px;
-    font: medium Inter, sans-serif;
+    font: medium JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .category_food {
@@ -346,6 +349,7 @@
     width: 100%;
     display: flex;
     justify-content: end;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .payment {
@@ -364,6 +368,7 @@
     font: medium Inter, sans-serif;
     width: 100%;
     display: end;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-21 {
@@ -405,6 +410,7 @@
     color: #6293CE;
     width: 50%;
     justify-content: end;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .amount-income {
@@ -425,6 +431,7 @@
     color: #F66464;
     width: 50%;
     justify-content: end;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .amount-expense {

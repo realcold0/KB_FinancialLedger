@@ -172,17 +172,17 @@ watch(
 
 .summary-income {
     color: #6293ce;
-    font-family: 'Inter', sans-serif;
+    font-family: JUA, sans-serif;
 }
 
 .summary-expense {
     color: #f66464;
-    font-family: 'Inter', sans-serif;
+    font-family: JUA, sans-serif;
 }
 
 .summary-total {
     color: #434343;
-    font-family: 'Inter', sans-serif;
+      font-family: JUA, sans-serif;
 }
 
 @media (max-width: 991px) {

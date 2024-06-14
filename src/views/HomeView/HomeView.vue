@@ -21,6 +21,7 @@ import Calendar from "./components/Calendar.vue"
     flex-direction: column;
     align-items: center;
     padding-bottom: 37px;
+    font-family: JUA, sans-serif;
 }
 
 .summary-content {

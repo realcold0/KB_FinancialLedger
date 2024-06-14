@@ -42,6 +42,7 @@ onMounted(() => {
     gap: 9px;
     font-size: medium;
     color: #434343;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-11 {
@@ -49,14 +50,15 @@ onMounted(() => {
     }
   }
   .div-12 {
-    font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   }
   .div-13 {
-    font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   }
   .div-14 {
     display: flex;
     gap: 2px;
+    font-family: JUA, sans-serif;
   }
   @media (max-width: 991px) {
     .div-14 {
@@ -64,10 +66,10 @@ onMounted(() => {
     }
   }
   .div-15 {
-    font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
     flex-grow: 1;
   }
   .div-16 {
-    font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   }
 </style>

@@ -71,6 +71,7 @@ const checkId = () => {
   width: 662px;
   max-width: 100%;
   flex-direction: column;
+    font-family: JUA, sans-serif;
   font-weight: 500;
   line-height: 150%;
   padding: 69px 48px 40px;
@@ -106,7 +107,7 @@ const checkId = () => {
   border-style: solid;
   width: 15%;
   text-align: start;
-  font: 36px Inter, sans-serif;
+  font: 36px JUA, sans-serif;
   padding-left: 10%;
 }
 .IDInput {
@@ -119,7 +120,7 @@ const checkId = () => {
   flex-grow: 1;
   width: fit-content;
   padding: 2%;
-  font: 23px Inter, sans-serif;
+  font: 23px JUA, sans-serif;
   color: black;
 }
 @media (max-width: 991px) {
@@ -152,7 +153,7 @@ const checkId = () => {
   text-align: start;
   width: 15%;
 
-  font: 36px Inter, sans-serif;
+  font: 36px JUA, sans-serif;
   padding-left: 10%;
 }
 .PWInput {
@@ -166,7 +167,7 @@ const checkId = () => {
   flex-grow: 1;
   width: fit-content;
   padding: 2%;
-  font: 23px Inter, sans-serif;
+  font: 23px JUA, sans-serif;
 }
 @media (max-width: 991px) {
   .PWLabel {
@@ -190,6 +191,7 @@ const checkId = () => {
   width: 70%;
   font-size: 24px;
   color: #fff;
+    font-family: JUA, sans-serif;
   white-space: nowrap;
   justify-content: space-between;
 }
@@ -201,7 +203,7 @@ const checkId = () => {
   }
 }
 .loginBTN {
-  font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   border-radius: 8px;
   cursor: pointer;
   height: 60px;
@@ -228,7 +230,7 @@ const checkId = () => {
 }
 
 .JoinBTN {
-  font-family: Inter, sans-serif;
+    font-family: JUA, sans-serif;
   border-radius: 8px;
   cursor: pointer;
   height: 60px;
