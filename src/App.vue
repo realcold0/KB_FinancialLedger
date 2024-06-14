@@ -1,11 +1,10 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { onMounted } from 'vue';
 import NavBar from './components/NavBar.vue';
 import QuickAddButton from './components/QuickAddButton.vue';
 import QuickAddForm from './components/QuickAddForm.vue';
 
-// 테마를 설정하는 함수
 const setTheme = () => {
   const theme = sessionStorage.getItem('theme');
   if (theme === 'dark') {
@@ -15,16 +14,22 @@ const setTheme = () => {
   }
 };
 
-// 컴포넌트가 로드될 때 테마를 설정
 onMounted(() => {
   setTheme();
 });
+
+const route = useRoute();
+
+const shouldHideQuickAddButton = () => {
+  const hidePaths = ['/login', '/signup', '/profile'];
+  return hidePaths.includes(route.path);
+};
 </script>
 
 <template>
   <NavBar></NavBar>
   <RouterView />
-  <QuickAddButton />
+  <QuickAddButton v-if="!shouldHideQuickAddButton()" />
 </template>
 
 <style>
